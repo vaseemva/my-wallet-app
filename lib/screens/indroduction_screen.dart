@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:my_wallet_app/colors/colors.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
-import 'package:my_wallet_app/screens/registration_screen.dart';
+import 'package:my_wallet_app/screens/profile_name_screen.dart';
 
 String appLogoPath = 'assets/images/mywalletalogo.png';
 
@@ -14,7 +14,7 @@ class IndroduceScreen extends StatefulWidget {
 }
 
 class _IndroduceScreenState extends State<IndroduceScreen> {
-  Dbhelper dbhelper=Dbhelper();
+  Dbhelper dbhelper = Dbhelper();
   List<PageViewModel> getpages() {
     return [
       PageViewModel(
@@ -70,14 +70,12 @@ class _IndroduceScreenState extends State<IndroduceScreen> {
         done: const Text('Got it'),
         skip: const Text('Skip'),
         onDone: () {
-          
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) =>  NameScreen()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => NameScreen()));
         },
         onSkip: () {
-          
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) =>  NameScreen()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => NameScreen()));
         },
         pages: getpages(),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+
 import 'package:my_wallet_app/colors/colors.dart';
 
 Widget incomeCard(String value) {
@@ -77,73 +77,55 @@ Widget expenseCard(String value) {
 //////////
 
 Widget expenseTile(int amount, String note, String date) {
-  return Slidable(
-    startActionPane: ActionPane(motion: const ScrollMotion(), children: [
-      SlidableAction(
-        onPressed: (BuildContext context) {},
-        borderRadius: BorderRadius.circular(20.0),
-        backgroundColor: Colors.red,
-        label: 'Delete',
-        icon: Icons.delete,
-      ),
-      SlidableAction(
-        onPressed: (context) {},
-        borderRadius: BorderRadius.circular(20.0),
-        backgroundColor: Colors.green,
-        label: 'Edit',
-        icon: Icons.edit,
-      )
-    ]),
-    child: Container(
-      margin: const EdgeInsets.all(12.0),
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-          color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.arrow_circle_down_outlined,
-                    size: 40.0,
-                    color: Colors.red[700],
-                  ),
-                  const SizedBox(
-                    width: 12.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        note,
-                        style: const TextStyle(
-                            fontSize: 15.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        date,
-                        style: const TextStyle(color: Colors.white),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              Text(
-                "- ₹ $amount",
-                style: const TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.w200,
-                    color: Colors.white),
-              )
-            ],
-          ),
-        ],
-      ),
+  return Container(
+    margin: const EdgeInsets.all(4.0),
+    padding: const EdgeInsets.all(8.0),
+    decoration: BoxDecoration(
+        color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.arrow_circle_down_outlined,
+                  size: 40.0,
+                  color: Colors.red[700],
+                ),
+                const SizedBox(
+                  width: 12.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      note,
+                      style: const TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      date,
+                      style: const TextStyle(color: Colors.white),
+                    )
+                  ],
+                )
+              ],
+            ),
+            Text(
+              "- ₹ $amount",
+              style: const TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w200,
+                  color: Colors.white),
+            )
+          ],
+        ),
+      ],
     ),
   );
 }
@@ -152,7 +134,7 @@ Widget expenseTile(int amount, String note, String date) {
 ///
 Widget incomeTile(int amount, String note, String date) {
   return Container(
-    margin: const EdgeInsets.all(12.0),
+    margin: const EdgeInsets.all(4.0),
     padding: const EdgeInsets.all(8.0),
     decoration: BoxDecoration(
         color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),

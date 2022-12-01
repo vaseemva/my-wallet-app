@@ -52,6 +52,14 @@ late SharedPreferences preferences;
     final box = Hive.box('transactions');
     await box.deleteAt(index);
   }
+  Future updateData(int? amount, DateTime data, String note, String type,String date,
+       index) async {
+    final box = Hive.box('transactions');
+    var value = {
+     'amount': amount, 'date': date, 'note': note, 'type': type,'dateTime': data
+    };
+    box.putAt(index, value);
+  }
    resetData() {
     final box = Hive.box('transactions');
     box.clear();

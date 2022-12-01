@@ -1,20 +1,44 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_wallet_app/colors/colors.dart';
-import 'package:my_wallet_app/controllers/db_helper.dart';
 
-import 'package:my_wallet_app/screens/home%20screens/home_screen.dart';
+import '../../colors/colors.dart';
+import '../../controllers/db_helper.dart';
+import '../home screens/home_screen.dart';
 
-class AddTransaction extends StatefulWidget {
-  const AddTransaction({super.key});
+class EditTransaction extends StatefulWidget {
+  const EditTransaction(
+      {super.key,
+      required this.amount,
+      required this.note,
+      required this.date,
+      required this.type,
+      required this.index});
+
+  final int amount;
+  final String note;
+  final DateTime date;
+  final String type;
+  final int index;
 
   @override
-  State<AddTransaction> createState() => _AddTransactionState();
+  State<EditTransaction> createState() => _EditTransactionState();
 }
 
-class _AddTransactionState extends State<AddTransaction> {
+class _EditTransactionState extends State<EditTransaction> {
+  TextEditingController editAmountController = TextEditingController();
+  TextEditingController editNoteController = TextEditingController();
+  @override
+  void initState() {
+    amount = widget.amount;
+    note = widget.note;
+    type = widget.type;
+    selectedDate = widget.date;
+    editAmountController.text = amount.toString();
+    editNoteController.text = note;
+    super.initState();
+  }
+
   int? amount;
   String note = '';
   String type = 'income';
@@ -53,8 +77,9 @@ class _AddTransactionState extends State<AddTransaction> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        foregroundColor: appThemeColor,
         title: const Text(
-          'Add Transaction',
+          'Edit Transaction',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -81,18 +106,13 @@ class _AddTransactionState extends State<AddTransaction> {
               ),
               Expanded(
                 child: TextField(
+                  controller: editAmountController,
+                  onChanged: (value) {
+                    amount = int.parse(value);
+                  },
                   decoration: const InputDecoration(
                       hintText: '0', border: InputBorder.none),
                   style: const TextStyle(fontSize: 24.0),
-                  onChanged: (value) {
-                    try {
-                      amount = int.parse(value);
-                    } catch (e) {
-                      Fluttertoast.showToast(
-                          msg: 'Please Enter Numbers Only',
-                          backgroundColor: Colors.grey);
-                    }
-                  },
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                 ),
@@ -204,6 +224,7 @@ class _AddTransactionState extends State<AddTransaction> {
               ),
               Expanded(
                 child: TextField(
+                  controller: editNoteController,
                   decoration: const InputDecoration(
                       hintText: 'Notes', border: InputBorder.none),
                   style: const TextStyle(fontSize: 16.0),
@@ -223,18 +244,18 @@ class _AddTransactionState extends State<AddTransaction> {
                 onPressed: () {
                   if (amount != null && note != '' && type.isNotEmpty) {
                     Dbhelper dbhelper = Dbhelper();
-                    dbhelper.addData(
-                      amount!,
-                      '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
-                      note,
-                      type,
-                      selectedDate,
-                    );
+                    dbhelper.updateData(
+                        amount,
+                        selectedDate,
+                        note,
+                        type,
+                        '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
+                        widget.index);
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(builder: (ctx3) {
                       return const HomeScreen();
                     }), (route) => false);
-                    AnimatedSnackBar.material('Added Successfully',
+                    AnimatedSnackBar.material('Updated Successfully',
                             mobileSnackBarPosition:
                                 MobileSnackBarPosition.bottom,
                             duration: const Duration(seconds: 3),
@@ -251,7 +272,7 @@ class _AddTransactionState extends State<AddTransaction> {
                     backgroundColor: appThemeColor,
                     textStyle: const TextStyle(
                         fontSize: 20.0, fontWeight: FontWeight.w400)),
-                child: const Text('Add')),
+                child: const Text('Update')),
           ),
         ],
       ),

@@ -57,7 +57,7 @@ class _GraphscreenState extends State<Graphscreen> {
             }
             if (snapshot.hasData) {
               if (snapshot.data!.isEmpty) {
-                return  Center(child: noGraph());
+                return Center(child: noGraph());
               }
 
               return Center(

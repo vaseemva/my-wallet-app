@@ -38,7 +38,7 @@ class _SettingsState extends State<Settings> {
               title: 'Reset App',
               icon: Icons.clear_all,
             ),
-            onTap: ()=>resetDialogue(),
+            onTap: () => resetDialogue(),
           ),
           settingsTile(
             title: 'Privacy & Policy',
@@ -57,7 +57,6 @@ class _SettingsState extends State<Settings> {
     );
   }
 
-
   Future changeNameDialogue() => showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -69,20 +68,20 @@ class _SettingsState extends State<Settings> {
               },
             ),
             actions: [
-              
               Row(
                 children: [
-                  TextButton(onPressed: (){
-                    Navigator.of(context).pop();
-                  }, child:const Text('Cancel')),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Cancel')),
                   TextButton(
                       onPressed: () {
                         if (newName != '') {
                           dbhelper.addname(newName);
-                           AnimatedSnackBar.material('Changed Successfully',
+                          AnimatedSnackBar.material('Changed Successfully',
                               type: AnimatedSnackBarType.success);
                           Navigator.of(context).pop();
-                         
                         } else {
                           AnimatedSnackBar.material('Enter new name correctly',
                               type: AnimatedSnackBarType.error);
@@ -91,36 +90,33 @@ class _SettingsState extends State<Settings> {
                       child: const Text('Save')),
                 ],
               )
-                  
             ],
           ));
 
-          Future resetDialogue() => showDialog(
+  Future resetDialogue() => showDialog(
       context: context,
       builder: (context) => AlertDialog(
             title: const Text('Are you sure..?'),
-            content:const Text('This action will erase all of your data'),
+            content: const Text('This action will erase all of your data'),
             actions: [
-              
               Row(
                 children: [
-                  TextButton(onPressed: (){
-                    Navigator.of(context).pop();
-                  }, child:const Text('No')),
                   TextButton(
                       onPressed: () {
-                        
-                          dbhelper.resetData();
-                          dbhelper.resetSharedPreference();
-                           
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>const SplashScreen()));
-                         
-                      
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('No')),
+                  TextButton(
+                      onPressed: () {
+                        dbhelper.resetData();
+                        dbhelper.resetSharedPreference();
+
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const SplashScreen()));
                       },
                       child: const Text('Yes')),
                 ],
               )
-                  
             ],
           ));
 }

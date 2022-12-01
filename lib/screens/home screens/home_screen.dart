@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const AddTransaction(),
     const AllTransactionScreen(),
     const Graphscreen(),
-    Settings()
+    const Settings()
   ];
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: appThemeColor,
             color: Colors.white,
             activeColor: Colors.white,
-            tabBackgroundColor: Colors.greenAccent.withOpacity(0.4),
+            tabBackgroundColor: Colors.blueGrey.withOpacity(0.8),
             gap: 2,
             padding: const EdgeInsets.all(12.0),
             tabs: const [

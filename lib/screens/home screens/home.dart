@@ -92,7 +92,6 @@ class _HomeState extends State<Home> {
         toolbarHeight: 0.0,
         backgroundColor: appThemeColor,
       ),
-     
       body: FutureBuilder<List<TransactionModel>>(
           future: fetch(),
           builder: (context, snapshot) {
@@ -101,8 +100,7 @@ class _HomeState extends State<Home> {
             }
             if (snapshot.hasData) {
               if (snapshot.data!.isEmpty) {
-                return Center(
-                    child: noDataHome() );
+                return Center(child: noDataHome());
               }
 
               getTotalBalance(snapshot.data!);
@@ -158,7 +156,7 @@ class _HomeState extends State<Home> {
                             ' ₹ $totalBalance',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                                fontSize: 22.0,
+                                fontSize: 28.0,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700),
                           ),
@@ -168,7 +166,7 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 incomeCard(totalIncome.toString()),
                                 expenseCard(totalExpense.toString())
@@ -215,7 +213,7 @@ class _HomeState extends State<Home> {
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      'Recent',
+                      'Recent Transactions',
                       style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.black87,

@@ -4,7 +4,6 @@ import 'package:my_wallet_app/colors/colors.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/models/transaction_model.dart';
 import 'package:my_wallet_app/screens/all%20transaction%20screen/widgets.dart';
-import 'package:my_wallet_app/widgets/widgets.dart';
 
 class AllTransactionScreen extends StatefulWidget {
   const AllTransactionScreen({super.key});
@@ -193,70 +192,145 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                               if (dataAtIndex.dateTime.month ==
                                       defaultDate.month &&
                                   dataAtIndex.dateTime.day == defaultDate.day) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               }
                               //this month
                             } else if (dataFilterValue == 'This Month') {
                               if (dataAtIndex.dateTime.month ==
                                   defaultDate.month) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               }
                               //all
                             } else if (dataFilterValue == 'All') {
-                              return incomeTile(dataAtIndex.amount,
-                                  dataAtIndex.note, dataAtIndex.date);
+                              return allTransactionIncomeTile(
+                                  dataAtIndex.amount,
+                                  dataAtIndex.note,
+                                  dataAtIndex.date,
+                                  index,
+                                  dataAtIndex.type,
+                                  dataAtIndex.dateTime);
                             } else if (dataFilterValue == 'This Year') {
                               //This year
                               if (yearFilterValue == 'January' &&
                                   dataAtIndex.dateTime.month == 1) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'February' &&
                                   dataAtIndex.dateTime.month == 2) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'March' &&
                                   dataAtIndex.dateTime.month == 3) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'April' &&
                                   dataAtIndex.dateTime.month == 4) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'May' &&
                                   dataAtIndex.dateTime.month == 5) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'June' &&
                                   dataAtIndex.dateTime.month == 6) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'July' &&
                                   dataAtIndex.dateTime.month == 7) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'August' &&
                                   dataAtIndex.dateTime.month == 8) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'September' &&
                                   dataAtIndex.dateTime.month == 9) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'October' &&
                                   dataAtIndex.dateTime.month == 10) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'November' &&
                                   dataAtIndex.dateTime.month == 11) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'December' &&
                                   dataAtIndex.dateTime.month == 12) {
-                                return incomeTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionIncomeTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               }
                             }
                           } else if (dropDownValue == 'Expense' &&
@@ -264,211 +338,436 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                             /////Expense Filtration
 
                             if (dataFilterValue == 'All') {
-                              return expenseTile(dataAtIndex.amount,
-                                  dataAtIndex.note, dataAtIndex.date);
+                              return allTransactionExpenseTile(
+                                  dataAtIndex.amount,
+                                  dataAtIndex.note,
+                                  dataAtIndex.date,
+                                  index,
+                                  dataAtIndex.type,
+                                  dataAtIndex.dateTime);
                             } else if (dataFilterValue == 'Today') {
                               if (dataAtIndex.dateTime.month ==
                                       defaultDate.month &&
                                   dataAtIndex.dateTime.day == defaultDate.day) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               }
                             } else if (dataFilterValue == 'This Month') {
                               if (dataAtIndex.dateTime.month ==
                                   defaultDate.month) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               }
                             } else if (dataFilterValue == 'This Year') {
                               //This year
                               if (yearFilterValue == 'January' &&
                                   dataAtIndex.dateTime.month == 1) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'February' &&
                                   dataAtIndex.dateTime.month == 2) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'March' &&
                                   dataAtIndex.dateTime.month == 3) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'April' &&
                                   dataAtIndex.dateTime.month == 4) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'May' &&
                                   dataAtIndex.dateTime.month == 5) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'June' &&
                                   dataAtIndex.dateTime.month == 6) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'July' &&
                                   dataAtIndex.dateTime.month == 7) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'August' &&
                                   dataAtIndex.dateTime.month == 8) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'September' &&
                                   dataAtIndex.dateTime.month == 9) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'October' &&
                                   dataAtIndex.dateTime.month == 10) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'November' &&
                                   dataAtIndex.dateTime.month == 11) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               } else if (yearFilterValue == 'December' &&
                                   dataAtIndex.dateTime.month == 12) {
-                                return expenseTile(dataAtIndex.amount,
-                                    dataAtIndex.note, dataAtIndex.date);
+                                return allTransactionExpenseTile(
+                                    dataAtIndex.amount,
+                                    dataAtIndex.note,
+                                    dataAtIndex.date,
+                                    index,
+                                    dataAtIndex.type,
+                                    dataAtIndex.dateTime);
                               }
                             }
                           } else {
                             if (dropDownValue == 'All') {
                               if (dataAtIndex.type == 'income') {
                                 if (dataFilterValue == 'All') {
-                                  return incomeTile(dataAtIndex.amount,
-                                      dataAtIndex.note, dataAtIndex.date);
+                                  return allTransactionIncomeTile(
+                                      dataAtIndex.amount,
+                                      dataAtIndex.note,
+                                      dataAtIndex.date,
+                                      index,
+                                      dataAtIndex.type,
+                                      dataAtIndex.dateTime);
                                 } else if (dataFilterValue == 'Today') {
                                   if (dataAtIndex.dateTime.month ==
                                           defaultDate.month &&
                                       dataAtIndex.dateTime.day ==
                                           defaultDate.day) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   }
                                 } else if (dataFilterValue == 'This Month') {
                                   if (dataAtIndex.dateTime.month ==
                                       defaultDate.month) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   }
                                 } else if (dataFilterValue == 'This Year') {
                                   if (yearFilterValue == 'January' &&
                                       dataAtIndex.dateTime.month == 1) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'February' &&
                                       dataAtIndex.dateTime.month == 2) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'March' &&
                                       dataAtIndex.dateTime.month == 3) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'April' &&
                                       dataAtIndex.dateTime.month == 4) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'May' &&
                                       dataAtIndex.dateTime.month == 5) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'June' &&
                                       dataAtIndex.dateTime.month == 6) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'July' &&
                                       dataAtIndex.dateTime.month == 7) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'August' &&
                                       dataAtIndex.dateTime.month == 8) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'September' &&
                                       dataAtIndex.dateTime.month == 9) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'October' &&
                                       dataAtIndex.dateTime.month == 10) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'November' &&
                                       dataAtIndex.dateTime.month == 11) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'December' &&
                                       dataAtIndex.dateTime.month == 12) {
-                                    return incomeTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionIncomeTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   }
                                 }
                               } else {
                                 if (dataFilterValue == 'All') {
-                                  return expenseTile(dataAtIndex.amount,
-                                      dataAtIndex.note, dataAtIndex.date);
+                                  return allTransactionExpenseTile(
+                                      dataAtIndex.amount,
+                                      dataAtIndex.note,
+                                      dataAtIndex.date,
+                                      index,
+                                      dataAtIndex.type,
+                                      dataAtIndex.dateTime);
                                 } else if (dataFilterValue == 'Today') {
                                   if (dataAtIndex.dateTime.month ==
                                           defaultDate.month &&
                                       dataAtIndex.dateTime.day ==
                                           defaultDate.day) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   }
                                 } else if (dataFilterValue == 'This Month') {
                                   if (dataAtIndex.dateTime.month ==
                                       defaultDate.month) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   }
                                 } else if (dataFilterValue == 'This Year') {
                                   if (yearFilterValue == 'January' &&
                                       dataAtIndex.dateTime.month == 1) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'February' &&
                                       dataAtIndex.dateTime.month == 2) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'March' &&
                                       dataAtIndex.dateTime.month == 3) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'April' &&
                                       dataAtIndex.dateTime.month == 4) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'May' &&
                                       dataAtIndex.dateTime.month == 5) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'June' &&
                                       dataAtIndex.dateTime.month == 6) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'July' &&
                                       dataAtIndex.dateTime.month == 7) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'August' &&
                                       dataAtIndex.dateTime.month == 8) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'September' &&
                                       dataAtIndex.dateTime.month == 9) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'October' &&
                                       dataAtIndex.dateTime.month == 10) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'November' &&
                                       dataAtIndex.dateTime.month == 11) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   } else if (yearFilterValue == 'December' &&
                                       dataAtIndex.dateTime.month == 12) {
-                                    return expenseTile(dataAtIndex.amount,
-                                        dataAtIndex.note, dataAtIndex.date);
+                                    return allTransactionExpenseTile(
+                                        dataAtIndex.amount,
+                                        dataAtIndex.note,
+                                        dataAtIndex.date,
+                                        index,
+                                        dataAtIndex.type,
+                                        dataAtIndex.dateTime);
                                   }
                                 }
                               }
