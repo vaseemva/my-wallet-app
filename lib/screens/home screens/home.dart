@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
           future: fetch(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Center(child: Text("Unexpected Error Occured !!"));
+              return const Center(child: SizedBox());
             }
             if (snapshot.hasData) {
               if (snapshot.data!.isEmpty) {
@@ -243,7 +243,7 @@ class _HomeState extends State<Home> {
               );
             } else {
               return const Center(
-                child: Text("Unexpected Error Occured !!"),
+                child: SizedBox(),
               );
             }
           }),
