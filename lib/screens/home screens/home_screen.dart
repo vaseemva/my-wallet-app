@@ -6,7 +6,7 @@ import 'package:my_wallet_app/screens/all%20transaction%20screen/all_transaction
 import 'package:my_wallet_app/screens/graph_screen/graphscreen.dart';
 import 'package:my_wallet_app/screens/home%20screens/home.dart';
 import 'package:my_wallet_app/screens/settings.dart';
- int selectedindex = 0;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -21,11 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
- 
+  int selectedindex = 0;
+
   final List<Widget> pages = [
     const Home(),
-    const AddTransaction(),
     const AllTransactionScreen(),
+    const AddTransaction(),
     const Graphscreen(),
     const Settings()
   ];
@@ -56,13 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 iconSize: 30,
               ),
               GButton(
-                icon: Icons.add,
-                text: 'Add',
+                icon: Icons.list,
+                text: 'All',
                 iconSize: 30,
               ),
               GButton(
-                icon: Icons.list,
-                text: 'All',
+                icon: Icons.add,
+                text: 'Add',
                 iconSize: 30,
               ),
               GButton(

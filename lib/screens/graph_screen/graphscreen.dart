@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_wallet_app/screens/graph_screen/widgets.dart';
-import 'package:my_wallet_app/screens/home%20screens/home_screen.dart';
+
 import 'package:pie_chart/pie_chart.dart';
 
 import '../../colors/colors.dart';
@@ -132,10 +132,6 @@ class _GraphscreenState extends State<Graphscreen> {
     }
   }
 
-  refresh() {
-    setState(() {});
-  }
-
   List<TransactionModel> arrayOfData = [];
 
   @override
@@ -229,8 +225,7 @@ class _GraphscreenState extends State<Graphscreen> {
               future: fetch(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return const Center(
-                      child: Text("Unexpected Error Occured !!"));
+                  return const Center(child: SizedBox());
                 }
                 if (snapshot.hasData) {
                   getTotalBalance(snapshot.data!);
@@ -288,7 +283,7 @@ class _GraphscreenState extends State<Graphscreen> {
                   return const SizedBox();
                 } else {
                   return const Center(
-                    child: Text("Unexpected Error Occured !!"),
+                    child: SizedBox(),
                   );
                 }
               }),

@@ -6,19 +6,22 @@ import 'package:pie_chart/pie_chart.dart';
 import '../../colors/colors.dart';
 
 Widget noGraph(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Image.asset(
-        'assets/images/nograph.gif',
-        height: MediaQuery.of(context).size.height * 0.7,
-        width: MediaQuery.of(context).size.width * 0.7,
-      ),
-      const Text(
-        "Not enough data to render chart",
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      ),
-    ],
+  return SizedBox(
+    height: MediaQuery.of(context).size.height * 0.75,
+    width: MediaQuery.of(context).size.width * 0.7,
+    child: Column(
+      children: [
+        Image.asset(
+          'assets/images/nograph.gif',
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.7,
+        ),
+        const Text(
+          "Not enough data to render chart",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+      ],
+    ),
   );
 }
 
