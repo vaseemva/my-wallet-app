@@ -6,7 +6,7 @@ import 'package:my_wallet_app/screens/all%20transaction%20screen/all_transaction
 import 'package:my_wallet_app/screens/graph_screen/graphscreen.dart';
 import 'package:my_wallet_app/screens/home%20screens/home.dart';
 import 'package:my_wallet_app/screens/settings.dart';
-
+ int selectedindex = 0;
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  int selectedindex = 0;
+ 
   final List<Widget> pages = [
     const Home(),
     const AddTransaction(),
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             activeColor: Colors.white,
             tabBackgroundColor: Colors.blueGrey.withOpacity(0.8),
             gap: 2,
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(10.0),
             tabs: const [
               GButton(
                 icon: Icons.home,

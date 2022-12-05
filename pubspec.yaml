@@ -40,6 +40,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   hive_flutter: ^1.1.0
   introduction_screen: ^3.0.2
+  pie_chart: ^5.3.2
   shared_preferences: ^2.0.15
 
 dev_dependencies:
