@@ -157,30 +157,32 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                   : const Color.fromARGB(255, 201, 245, 235),
                               borderRadius: BorderRadius.circular(20.0)),
                           child: Center(
-                            child: DropdownButton(
-                                disabledHint: const Text('Month'),
-                                menuMaxHeight: 200,
-                                iconEnabledColor: Colors.white,
-                                dropdownColor: appThemeColor,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                                borderRadius: BorderRadius.circular(10),
-                                items: dataFilterValue == 'Monthly'
-                                    ? itemsYearFilter
-                                        .map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList()
-                                    : null,
-                                value: yearFilterValue,
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    yearFilterValue = newValue!;
-                                  });
-                                }),
+                            child:  DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                  disabledHint: const Text('Month'),
+                                  menuMaxHeight: 200,
+                                  iconEnabledColor: Colors.white,
+                                  dropdownColor: appThemeColor,
+                                  style: const TextStyle(
+                                      color: Colors.white, fontSize: 12),
+                                  borderRadius: BorderRadius.circular(10),
+                                  items: dataFilterValue == 'Monthly'
+                                      ? itemsYearFilter
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList()
+                                      : null,
+                                  value: yearFilterValue,
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      yearFilterValue = newValue!;
+                                    });
+                                  }),
+                            ),
                           ),
                         )
                       : const SizedBox(),

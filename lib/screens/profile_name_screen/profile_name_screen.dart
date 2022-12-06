@@ -5,7 +5,7 @@ import 'package:my_wallet_app/colors/colors.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/screens/home%20screens/home_screen.dart';
 
-import 'package:my_wallet_app/screens/indroduction_screen.dart';
+import 'package:my_wallet_app/screens/profile_name_screen/widgets.dart';
 
 class NameScreen extends StatelessWidget {
   NameScreen({super.key});
@@ -23,17 +23,7 @@ class NameScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white70,
-                    borderRadius: BorderRadius.circular(18.0)),
-                padding: const EdgeInsets.all(10.0),
-                child: Image.asset(
-                  appLogoPath,
-                  height: 80.0,
-                  width: 80.0,
-                ),
-              ),
+              logoImage(),
               const SizedBox(
                 height: 12.0,
               ),
@@ -66,17 +56,7 @@ class NameScreen extends StatelessWidget {
                 width: double.maxFinite,
                 child: ElevatedButton(
                   onPressed: () {
-                    String name = _namecontroller.text;
-                    if (name.isNotEmpty) {
-                      dbhelper.addname(name);
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
-                    } else {
-                      AnimatedSnackBar.material(
-                              'Enter your name to get started',
-                              type: AnimatedSnackBarType.error)
-                          .show(context);
-                    }
+                    saveName(context);
                   },
                   style: ButtonStyle(
                       backgroundColor:
@@ -91,5 +71,18 @@ class NameScreen extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  saveName(BuildContext context) {
+    String name = _namecontroller.text;
+    if (name.isNotEmpty) {
+      dbhelper.addname(name);
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
+    } else {
+      AnimatedSnackBar.material('Enter your name to get started',
+              type: AnimatedSnackBarType.error)
+          .show(context);
+    }
   }
 }

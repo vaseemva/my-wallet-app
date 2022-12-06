@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:my_wallet_app/colors/colors.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
-import 'package:my_wallet_app/screens/profile_name_screen.dart';
+import 'package:my_wallet_app/screens/profile_name_screen/profile_name_screen.dart';
 
 String appLogoPath = 'assets/images/mywalletalogo.png';
 

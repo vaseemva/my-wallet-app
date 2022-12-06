@@ -6,7 +6,6 @@ import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/models/transaction_model.dart';
 import 'package:my_wallet_app/screens/home%20screens/widgets.dart';
 
-import 'package:my_wallet_app/screens/indroduction_screen.dart';
 import 'package:my_wallet_app/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,6 +28,7 @@ class _HomeState extends State<Home> {
     preferences = await SharedPreferences.getInstance();
   }
 
+  String? name;
   List<FlSpot> dataSet = [];
   List<FlSpot> getPlotPoints(List<TransactionModel> entireData) {
     dataSet = [];
@@ -72,29 +72,13 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Future<List<TransactionModel>> fetch() async {
-    if (box.values.isEmpty) {
-      return Future.value([]);
-    } else {
-      List<TransactionModel> items = [];
-      box.toMap().values.forEach((element) {
-        items.add(TransactionModel(
-            element['amount'] as int,
-            element['dateTime'] as DateTime,
-            element['type'],
-            element['note'],
-            element['date']));
-      });
-      return items;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     getpreferences();
+
     box = Hive.box('transactions');
-    fetch();
+    dbhelper.fetch();
   }
 
   @override
@@ -105,7 +89,7 @@ class _HomeState extends State<Home> {
         backgroundColor: appThemeColor,
       ),
       body: FutureBuilder<List<TransactionModel>>(
-          future: fetch(),
+          future: dbhelper.fetch(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Center(child: SizedBox());
@@ -120,87 +104,13 @@ class _HomeState extends State<Home> {
               return ListView(
                 padding: const EdgeInsets.all(12.0),
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50.0),
-                          color: Colors.white70,
-                        ),
-                        padding: const EdgeInsets.all(2.0),
-                        child: Image.asset(
-                          appLogoPath,
-                          width: 50.0,
-                          height: 50.0,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 12.0,
-                      ),
-                      Text(
-                        "${preferences.getString('name')}'s Wallet",
-                        style: const TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.w300),
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ],
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    margin: const EdgeInsets.all(12.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: appThemeColor,
-                          borderRadius: BorderRadius.circular(18.0)),
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Total Balance',
-                            textAlign: TextAlign.center,
-                            style:
-                                TextStyle(fontSize: 22.0, color: Colors.white),
-                          ),
-                          const SizedBox(
-                            height: 12.0,
-                          ),
-                          Text(
-                            ' ₹ $totalBalance',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                fontSize: 28.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(
-                            height: 12.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                incomeCard(totalIncome.toString()),
-                                expenseCard(totalExpense.toString())
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  const Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Text(
-                      'Expenses',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-
+                  nameCard(name: "${preferences.getString('name')}"),
+                  homeWalletCard(
+                      context: context,
+                      totalBalance: totalBalance,
+                      totalIncome: totalIncome,
+                      totalExpense: totalExpense),
+                  expenseText(),
                   dataSet.length < 2
                       ? const SizedBox(
                           height: 150.0,
@@ -208,19 +118,7 @@ class _HomeState extends State<Home> {
                               child:
                                   Text('Not enough datas to render chart..!')))
                       : walletLineChart(getPlotPoints(snapshot.data!)),
-
-                  const Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Text(
-                      'Recent Transactions',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  //
-                  //
+                  recentText(),
                   ListView.builder(
                       shrinkWrap: true,
                       reverse: true,

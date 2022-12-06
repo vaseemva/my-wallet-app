@@ -1,5 +1,85 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:my_wallet_app/colors/colors.dart';
+
+import '../../widgets/widgets.dart';
+import '../indroduction_screen.dart';
+Widget nameCard({required String name}){
+  return Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50.0),
+                          color: Colors.white70,
+                        ),
+                        padding: const EdgeInsets.all(2.0),
+                        child: Image.asset(
+                          appLogoPath,
+                          width: 50.0,
+                          height: 50.0,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Text(
+                        "$name's Wallet",
+                        style: const TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.w300),
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ],
+                  );
+}
+
+Widget homeWalletCard({required BuildContext context,required int totalBalance,required int totalIncome,required int totalExpense}){
+  return Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    margin: const EdgeInsets.all(12.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: appThemeColor,
+                          borderRadius: BorderRadius.circular(18.0)),
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Total Balance',
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(fontSize: 22.0, color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 12.0,
+                          ),
+                          Text(
+                            ' ₹ $totalBalance',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 28.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          const SizedBox(
+                            height: 12.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                incomeCard(totalIncome.toString()),
+                                expenseCard(totalExpense.toString())
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+}
+
+
 
 Widget noDataHome() {
   return Column(
@@ -15,6 +95,30 @@ Widget noDataHome() {
       ),
     ],
   );
+}
+Widget expenseText(){
+  return const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      'Expenses',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  );
+}
+Widget recentText(){
+  return const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      'Recent Transactions',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  );
 }
 
 Widget walletLineChart(dynamic spots) {

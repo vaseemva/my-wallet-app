@@ -26,9 +26,9 @@ Widget incomeCard(String value) {
             style: TextStyle(fontSize: 14.0, color: Colors.white),
           ),
           Text(
-            value,
+            '₹ $value',
             style: const TextStyle(
-                fontSize: 14.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.w700,
                 color: Colors.white),
           )
@@ -63,9 +63,9 @@ Widget expenseCard(String value) {
             style: TextStyle(fontSize: 14.0, color: Colors.white),
           ),
           Text(
-            value,
+            '₹ $value',
             style: const TextStyle(
-                fontSize: 14.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.w700,
                 color: Colors.white),
           )
@@ -119,7 +119,7 @@ Widget expenseTile(int amount, String note, String date) {
             Text(
               "- ₹ $amount",
               style: const TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w200,
                   color: Colors.white),
             )
@@ -175,7 +175,7 @@ Widget incomeTile(int amount, String note, String date) {
             Text(
               "+ ₹ $amount",
               style: const TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w200,
                   color: Colors.white),
             )

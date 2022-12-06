@@ -205,7 +205,7 @@ class _AddTransactionState extends State<AddTransaction> {
               Expanded(
                 child: TextField(
                   decoration: const InputDecoration(
-                      hintText: 'Notes', border: InputBorder.none),
+                      hintText: 'Title', border: InputBorder.none),
                   style: const TextStyle(fontSize: 16.0),
                   onChanged: (value) {
                     note = value;
@@ -221,31 +221,7 @@ class _AddTransactionState extends State<AddTransaction> {
             height: 40.0,
             child: ElevatedButton(
                 onPressed: () {
-                  if (amount != null && note != '' && type.isNotEmpty) {
-                    Dbhelper dbhelper = Dbhelper();
-                    dbhelper.addData(
-                      amount!,
-                      '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
-                      note,
-                      type,
-                      selectedDate,
-                    );
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (ctx3) {
-                      return const HomeScreen();
-                    }), (route) => false);
-                    AnimatedSnackBar.material('Added Successfully',
-                            mobileSnackBarPosition:
-                                MobileSnackBarPosition.bottom,
-                            duration: const Duration(seconds: 3),
-                            type: AnimatedSnackBarType.success)
-                        .show(context);
-                  } else {
-                    AnimatedSnackBar.material('Please fill all details',
-                            duration: const Duration(seconds: 3),
-                            type: AnimatedSnackBarType.error)
-                        .show(context);
-                  }
+                  onAddTransaction();
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: appThemeColor,
@@ -256,5 +232,32 @@ class _AddTransactionState extends State<AddTransaction> {
         ],
       ),
     );
+  }
+
+  onAddTransaction() {
+    if (amount != null && note != '' && type.isNotEmpty) {
+      Dbhelper dbhelper = Dbhelper();
+      dbhelper.addData(
+        amount!,
+        '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
+        note,
+        type,
+        selectedDate,
+      );
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (ctx3) {
+        return const HomeScreen();
+      }), (route) => false);
+      AnimatedSnackBar.material('Added Successfully',
+              mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+              duration: const Duration(seconds: 3),
+              type: AnimatedSnackBarType.success)
+          .show(context);
+    } else {
+      AnimatedSnackBar.material('Please fill all details',
+              duration: const Duration(seconds: 3),
+              type: AnimatedSnackBarType.error)
+          .show(context);
+    }
   }
 }
