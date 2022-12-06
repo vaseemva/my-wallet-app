@@ -6,6 +6,4 @@ class TransactionModel {
   final String date;
 
   TransactionModel(this.amount, this.dateTime, this.type, this.note, this.date);
-
-  
 }

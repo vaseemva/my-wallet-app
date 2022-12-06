@@ -29,17 +29,29 @@ class _HomeState extends State<Home> {
     preferences = await SharedPreferences.getInstance();
   }
 
-  List<FlSpot> dataset = [];
-  List<FlSpot> getPlotPoints(Map entireData) {
-    dataset = [];
-    entireData.forEach((key, value) {
-      if (value['type' == 'expense'] &&
-          (value['dateTime'] as DateTime).month == today.month) {
-        dataset.add(FlSpot((value['dateTime'] as DateTime).day.toDouble(),
-            (value['amount'] as int).toDouble()));
+  List<FlSpot> dataSet = [];
+  List<FlSpot> getPlotPoints(List<TransactionModel> entireData) {
+    dataSet = [];
+    List tempdataSet = [];
+
+    for (TransactionModel item in entireData) {
+      if (item.dateTime.month == today.month && item.type == "expense") {
+        tempdataSet.add(item);
       }
-    });
-    return dataset;
+    }
+    //
+    // Sorting the list as per the date
+    tempdataSet.sort((a, b) => a.dateTime.day.compareTo(b.dateTime.day));
+    //
+    for (var i = 0; i < tempdataSet.length; i++) {
+      dataSet.add(
+        FlSpot(
+          tempdataSet[i].dateTime.day.toDouble(),
+          tempdataSet[i].amount.toDouble(),
+        ),
+      );
+    }
+    return dataSet;
   }
 
   getTotalBalance(List<TransactionModel> entireData) {
@@ -104,7 +116,7 @@ class _HomeState extends State<Home> {
               }
 
               getTotalBalance(snapshot.data!);
-
+              getPlotPoints(snapshot.data!);
               return ListView(
                 padding: const EdgeInsets.all(12.0),
                 children: [
@@ -177,9 +189,6 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  //
-                  //<----------------------->
-                  //
 
                   const Padding(
                     padding: EdgeInsets.all(12.0),
@@ -191,24 +200,14 @@ class _HomeState extends State<Home> {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  //
-                  //
-                  //  dataset.length<2?const SizedBox(
-                  //       height: 150.0,
-                  //       child: Center(child: Text('Not enough datas to render chart..!'))
-                  //     )   :
-                  SizedBox(
-                    height: 200.0,
-                    child: LineChart(
-                      LineChartData(lineBarsData: [
-                        LineChartBarData(spots: [
-                          const FlSpot(8, 8),
-                          const FlSpot(13, 15),
-                          const FlSpot(5, 12),
-                        ], isCurved: false, color: appThemeColor, barWidth: 2.5)
-                      ]),
-                    ),
-                  ),
+
+                  dataSet.length < 2
+                      ? const SizedBox(
+                          height: 150.0,
+                          child: Center(
+                              child:
+                                  Text('Not enough datas to render chart..!')))
+                      : walletLineChart(getPlotPoints(snapshot.data!)),
 
                   const Padding(
                     padding: EdgeInsets.all(12.0),
@@ -230,7 +229,6 @@ class _HomeState extends State<Home> {
                       itemBuilder: (context, index) {
                         TransactionModel dataAtIndex = snapshot.data![index];
 
-                        // return const Text('data');
                         if (dataAtIndex.type == 'income') {
                           return incomeTile(dataAtIndex.amount,
                               dataAtIndex.note, dataAtIndex.date.toString());

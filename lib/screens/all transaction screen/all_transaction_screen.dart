@@ -18,6 +18,20 @@ String yearFilterValue = 'January';
 String dropDownValue = 'All';
 
 class _AllTransactionScreenState extends State<AllTransactionScreen> {
+  DateTimeRange dateRange =
+      DateTimeRange(start: DateTime(2022, 1, 1), end: DateTime.now());
+  Future pickDateRange() async {
+    DateTimeRange? newDateRange = await showDateRangePicker(
+        context: context,
+        initialDateRange: dateRange,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2040));
+    if (newDateRange == null) return;
+    setState(() {
+      dateRange = newDateRange;
+    });
+  }
+
   DateTime defaultDate = DateTime.now();
   final types = <String>[
     'All',
@@ -27,8 +41,8 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
   final itemDataFilter = <String>[
     'All',
     'Today',
-    'This Month',
-    'This Year',
+    'Monthly',
+    'Custom',
   ];
 
   final itemsYearFilter = <String>[
@@ -48,6 +62,8 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
   Dbhelper dbhelper = Dbhelper();
   @override
   Widget build(BuildContext context) {
+    final startDate = dateRange.start;
+    final endDate = dateRange.end;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -65,7 +81,8 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: dataFilterValue == 'This Year'
+                    width: dataFilterValue == 'Monthly' ||
+                            dataFilterValue == 'Custom'
                         ? MediaQuery.of(context).size.width * 0.26
                         : MediaQuery.of(context).size.width * 0.40,
                     height: MediaQuery.of(context).size.height * 0.06,
@@ -73,29 +90,32 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                         color: appThemeColor,
                         borderRadius: BorderRadius.circular(20.0)),
                     child: Center(
-                      child: DropdownButton(
-                          iconEnabledColor: Colors.white,
-                          dropdownColor: appThemeColor,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12),
-                          items: types
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          value: dropDownValue,
-                          onChanged: (String? newvalue) {
-                            setState(() {
-                              dropDownValue = newvalue!;
-                            });
-                          }),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                            iconEnabledColor: Colors.white,
+                            dropdownColor: appThemeColor,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 12),
+                            items: types
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            value: dropDownValue,
+                            onChanged: (String? newvalue) {
+                              setState(() {
+                                dropDownValue = newvalue!;
+                              });
+                            }),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
                   Container(
-                    width: dataFilterValue == 'This Year'
+                    width: dataFilterValue == 'Monthly' ||
+                            dataFilterValue == 'Custom'
                         ? MediaQuery.of(context).size.width * 0.26
                         : MediaQuery.of(context).size.width * 0.40,
                     height: MediaQuery.of(context).size.height * 0.06,
@@ -104,33 +124,35 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
-                      child: DropdownButton<String>(
-                          iconEnabledColor: Colors.white,
-                          dropdownColor: appThemeColor,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12),
-                          borderRadius: BorderRadius.circular(10),
-                          items: itemDataFilter
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          value: dataFilterValue,
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dataFilterValue = newValue!;
-                            });
-                          }),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                            iconEnabledColor: Colors.white,
+                            dropdownColor: appThemeColor,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 12),
+                            borderRadius: BorderRadius.circular(10),
+                            items: itemDataFilter
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            value: dataFilterValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dataFilterValue = newValue!;
+                              });
+                            }),
+                      ),
                     ),
                   ),
-                  dataFilterValue == 'This Year'
+                  dataFilterValue == 'Monthly'
                       ? Container(
                           width: MediaQuery.of(context).size.width * 0.26,
                           height: MediaQuery.of(context).size.height * 0.06,
                           decoration: BoxDecoration(
-                              color: dataFilterValue == 'This Year'
+                              color: dataFilterValue == 'Monthly'
                                   ? appThemeColor
                                   : const Color.fromARGB(255, 201, 245, 235),
                               borderRadius: BorderRadius.circular(20.0)),
@@ -143,7 +165,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 12),
                                 borderRadius: BorderRadius.circular(10),
-                                items: dataFilterValue == 'This Year'
+                                items: dataFilterValue == 'Monthly'
                                     ? itemsYearFilter
                                         .map<DropdownMenuItem<String>>(
                                             (String value) {
@@ -161,6 +183,14 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                 }),
                           ),
                         )
+                      : const SizedBox(),
+                  dataFilterValue == 'Custom'
+                      ? IconButton(
+                          onPressed: () {
+                            pickDateRange();
+                          },
+                          color: appThemeColor,
+                          icon: const Icon(Icons.date_range))
                       : const SizedBox()
                 ],
               ),
@@ -200,10 +230,10 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
                               }
-                              //this month
-                            } else if (dataFilterValue == 'This Month') {
-                              if (dataAtIndex.dateTime.month ==
-                                  defaultDate.month) {
+                              //Custom
+                            } else if (dataFilterValue == 'Custom') {
+                              if (dataAtIndex.dateTime.isAfter(startDate) &&
+                                  dataAtIndex.dateTime.isBefore(endDate)) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
                                     dataAtIndex.note,
@@ -221,8 +251,8 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                   index,
                                   dataAtIndex.type,
                                   dataAtIndex.dateTime);
-                            } else if (dataFilterValue == 'This Year') {
-                              //This year
+                            } else if (dataFilterValue == 'Monthly') {
+                              //Monthly
                               if (yearFilterValue == 'January' &&
                                   dataAtIndex.dateTime.month == 1) {
                                 return allTransactionIncomeTile(
@@ -357,9 +387,9 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
                               }
-                            } else if (dataFilterValue == 'This Month') {
-                              if (dataAtIndex.dateTime.month ==
-                                  defaultDate.month) {
+                            } else if (dataFilterValue == 'Custom') {
+                              if (dataAtIndex.dateTime.isAfter(startDate) &&
+                                  dataAtIndex.dateTime.isBefore(endDate)) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
                                     dataAtIndex.note,
@@ -368,8 +398,8 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
                               }
-                            } else if (dataFilterValue == 'This Year') {
-                              //This year
+                            } else if (dataFilterValue == 'Monthly') {
+                              //Monthly
                               if (yearFilterValue == 'January' &&
                                   dataAtIndex.dateTime.month == 1) {
                                 return allTransactionExpenseTile(
@@ -504,9 +534,9 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
                                   }
-                                } else if (dataFilterValue == 'This Month') {
-                                  if (dataAtIndex.dateTime.month ==
-                                      defaultDate.month) {
+                                } else if (dataFilterValue == 'Custom') {
+                                  if (dataAtIndex.dateTime.isAfter(startDate) &&
+                                  dataAtIndex.dateTime.isBefore(endDate)) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
                                         dataAtIndex.note,
@@ -515,7 +545,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
                                   }
-                                } else if (dataFilterValue == 'This Year') {
+                                } else if (dataFilterValue == 'Monthly') {
                                   if (yearFilterValue == 'January' &&
                                       dataAtIndex.dateTime.month == 1) {
                                     return allTransactionIncomeTile(
@@ -648,9 +678,9 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
                                   }
-                                } else if (dataFilterValue == 'This Month') {
-                                  if (dataAtIndex.dateTime.month ==
-                                      defaultDate.month) {
+                                } else if (dataFilterValue == 'Custom') {
+                                  if (dataAtIndex.dateTime.isAfter(startDate) &&
+                                  dataAtIndex.dateTime.isBefore(endDate)) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
                                         dataAtIndex.note,
@@ -659,7 +689,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
                                   }
-                                } else if (dataFilterValue == 'This Year') {
+                                } else if (dataFilterValue == 'Monthly') {
                                   if (yearFilterValue == 'January' &&
                                       dataAtIndex.dateTime.month == 1) {
                                     return allTransactionExpenseTile(
