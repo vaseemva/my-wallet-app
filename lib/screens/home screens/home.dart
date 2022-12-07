@@ -5,7 +5,6 @@ import 'package:my_wallet_app/colors/colors.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/models/transaction_model.dart';
 import 'package:my_wallet_app/screens/home%20screens/widgets.dart';
-
 import 'package:my_wallet_app/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,8 +38,7 @@ class _HomeState extends State<Home> {
         tempdataSet.add(item);
       }
     }
-    //
-    // Sorting the list as per the date
+
     tempdataSet.sort((a, b) => a.dateTime.day.compareTo(b.dateTime.day));
     //
     for (var i = 0; i < tempdataSet.length; i++) {
@@ -84,6 +82,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 0.0,
         backgroundColor: appThemeColor,
@@ -116,7 +115,7 @@ class _HomeState extends State<Home> {
                           height: 150.0,
                           child: Center(
                               child:
-                                  Text('Not enough datas to render chart..!')))
+                                  Text('Not enough data to render chart..!')))
                       : walletLineChart(getPlotPoints(snapshot.data!)),
                   recentText(),
                   ListView.builder(

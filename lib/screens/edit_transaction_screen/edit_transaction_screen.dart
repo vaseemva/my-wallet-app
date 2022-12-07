@@ -242,31 +242,7 @@ class _EditTransactionState extends State<EditTransaction> {
             height: 40.0,
             child: ElevatedButton(
                 onPressed: () {
-                  if (amount != null && note != '' && type.isNotEmpty) {
-                    Dbhelper dbhelper = Dbhelper();
-                    dbhelper.updateData(
-                        amount,
-                        selectedDate,
-                        note,
-                        type,
-                        '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
-                        widget.index);
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (ctx3) {
-                      return const HomeScreen();
-                    }), (route) => false);
-                    AnimatedSnackBar.material('Updated Successfully',
-                            mobileSnackBarPosition:
-                                MobileSnackBarPosition.bottom,
-                            duration: const Duration(seconds: 3),
-                            type: AnimatedSnackBarType.success)
-                        .show(context);
-                  } else {
-                    AnimatedSnackBar.material('Please fill all details',
-                            duration: const Duration(seconds: 3),
-                            type: AnimatedSnackBarType.error)
-                        .show(context);
-                  }
+                  updateTransaction();
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: appThemeColor,
@@ -277,5 +253,32 @@ class _EditTransactionState extends State<EditTransaction> {
         ],
       ),
     );
+  }
+
+  updateTransaction() {
+    if (amount != null && note != '' && type.isNotEmpty) {
+      Dbhelper dbhelper = Dbhelper();
+      dbhelper.updateData(
+          amount,
+          selectedDate,
+          note,
+          type,
+          '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
+          widget.index);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (ctx3) {
+        return const HomeScreen();
+      }), (route) => false);
+      AnimatedSnackBar.material('Updated Successfully',
+              mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+              duration: const Duration(seconds: 3),
+              type: AnimatedSnackBarType.success)
+          .show(context);
+    } else {
+      AnimatedSnackBar.material('Please fill all details',
+              duration: const Duration(seconds: 3),
+              type: AnimatedSnackBarType.error)
+          .show(context);
+    }
   }
 }

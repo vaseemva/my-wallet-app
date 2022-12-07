@@ -99,10 +99,15 @@ class _NovemberWalletPieChartState extends State<NovemberWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -171,10 +176,15 @@ class _DecemberWalletPieChartState extends State<DecemberWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -243,10 +253,15 @@ class _JanuaryWalletPieChartState extends State<JanuaryWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -315,10 +330,15 @@ class _FebruaryWalletPieChartState extends State<FebruaryWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -387,10 +407,15 @@ class _MarchWalletPieChartState extends State<MarchWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -459,10 +484,15 @@ class _AprilWalletPieChartState extends State<AprilWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -531,10 +561,15 @@ class _MayWalletPieChartState extends State<MayWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -603,10 +638,15 @@ class _JuneWalletPieChartState extends State<JuneWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -675,10 +715,15 @@ class _JulyWalletPieChartState extends State<JulyWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -747,10 +792,15 @@ class _AugustWalletPieChartState extends State<AugustWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -820,10 +870,15 @@ class _SeptemberWalletPieChartState extends State<SeptemberWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));
@@ -892,10 +947,15 @@ class _OctoberWalletPieChartState extends State<OctoberWalletPieChart> {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
+              chartRadius: 280,
+              legendOptions:
+                  const LegendOptions(legendPosition: LegendPosition.bottom),
+              chartValuesOptions:
+                  const ChartValuesOptions(showChartValuesInPercentage: true),
               dataMap: dataMap,
               colorList: chartColors,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40.0,
+              ringStrokeWidth: 50.0,
             )),
       ],
     ));

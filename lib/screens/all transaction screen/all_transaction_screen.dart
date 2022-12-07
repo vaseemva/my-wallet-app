@@ -65,6 +65,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
     final startDate = dateRange.start;
     final endDate = dateRange.end;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: const Text('All Transactions',
@@ -192,7 +193,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                             pickDateRange();
                           },
                           color: appThemeColor,
-                          icon: const Icon(Icons.date_range))
+                          icon:  Icon(Icons.date_range,size: MediaQuery.of(context).size.width * 0.12,))
                       : const SizedBox()
                 ],
               ),

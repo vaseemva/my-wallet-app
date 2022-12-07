@@ -145,6 +145,7 @@ class _GraphscreenState extends State<Graphscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 0.0,
         backgroundColor: appThemeColor,
@@ -153,6 +154,12 @@ class _GraphscreenState extends State<Graphscreen> {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
+            child: const Center(
+              child: Text(
+                'Statistics',
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -238,10 +245,15 @@ class _GraphscreenState extends State<Graphscreen> {
                             height: MediaQuery.of(context).size.height * 0.7,
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: PieChart(
+                              chartRadius: 280,
+                              legendOptions: const LegendOptions(
+                                  legendPosition: LegendPosition.bottom),
+                              chartValuesOptions: const ChartValuesOptions(
+                                  showChartValuesInPercentage: true),
                               dataMap: dataMap,
                               colorList: chartColors,
                               chartType: ChartType.ring,
-                              ringStrokeWidth: 40.0,
+                              ringStrokeWidth: 50.0,
                             )));
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'January') {
