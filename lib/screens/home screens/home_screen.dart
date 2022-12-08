@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:my_wallet_app/colors/colors.dart';
-import 'package:my_wallet_app/screens/add_transaction.dart';
+import 'package:my_wallet_app/screens/add_transaction/add_transaction.dart';
 import 'package:my_wallet_app/screens/all%20transaction%20screen/all_transaction_screen.dart';
 import 'package:my_wallet_app/screens/graph_screen/graphscreen.dart';
 import 'package:my_wallet_app/screens/home%20screens/home.dart';
-import 'package:my_wallet_app/screens/settings.dart';
+import 'package:my_wallet_app/screens/settings_screen/settings.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

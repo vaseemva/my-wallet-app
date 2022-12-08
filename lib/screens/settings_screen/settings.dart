@@ -1,10 +1,9 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:my_wallet_app/colors/colors.dart';
-import 'package:my_wallet_app/screens/splash_screen.dart';
+import 'package:my_wallet_app/screens/splash_screen/splash_screen.dart';
 import 'package:my_wallet_app/widgets/widgets.dart';
-
-import '../controllers/db_helper.dart';
+import '../../controllers/db_helper.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -45,10 +44,12 @@ class _SettingsState extends State<Settings> {
             title: 'Privacy & Policy',
             icon: Icons.privacy_tip,
           ),
-          settingsTile(
-            title: 'Feedback',
-            icon: Icons.message_outlined,
-          ),
+          InkWell(
+              child: settingsTile(
+                title: 'Feedback',
+                icon: Icons.message_outlined,
+              ),
+              onTap: () {}),
           settingsTile(
             title: 'About us',
             icon: Icons.people,
@@ -111,7 +112,6 @@ class _SettingsState extends State<Settings> {
                       onPressed: () {
                         dbhelper.resetData();
                         dbhelper.resetSharedPreference();
-
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => const SplashScreen()));
                       },

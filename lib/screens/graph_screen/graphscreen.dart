@@ -245,7 +245,7 @@ class _GraphscreenState extends State<Graphscreen> {
                             height: MediaQuery.of(context).size.height * 0.7,
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: PieChart(
-                              chartRadius: 280,
+                              chartRadius: 250,
                               legendOptions: const LegendOptions(
                                   legendPosition: LegendPosition.bottom),
                               chartValuesOptions: const ChartValuesOptions(

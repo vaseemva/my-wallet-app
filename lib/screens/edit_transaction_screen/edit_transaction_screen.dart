@@ -112,7 +112,7 @@ class _EditTransactionState extends State<EditTransaction> {
                   },
                   decoration: const InputDecoration(
                       hintText: '0', border: InputBorder.none),
-                  style: const TextStyle(fontSize: 24.0),
+                  style: const TextStyle(fontSize: 20.0),
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                 ),
@@ -265,10 +265,8 @@ class _EditTransactionState extends State<EditTransaction> {
           type,
           '${selectedDate.day} ${months[selectedDate.month - 1]}  ${selectedDate.year}',
           widget.index);
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (ctx3) {
-        return const HomeScreen();
-      }), (route) => false);
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
       AnimatedSnackBar.material('Updated Successfully',
               mobileSnackBarPosition: MobileSnackBarPosition.bottom,
               duration: const Duration(seconds: 3),

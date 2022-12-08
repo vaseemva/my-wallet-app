@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/screens/home%20screens/home_screen.dart';
 
-import 'indroduction_screen.dart';
+import '../introduction_screen/indroduction_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

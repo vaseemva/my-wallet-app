@@ -50,6 +50,7 @@ class _AddTransactionState extends State<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -83,7 +84,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 child: TextField(
                   decoration: const InputDecoration(
                       hintText: '0', border: InputBorder.none),
-                  style: const TextStyle(fontSize: 24.0),
+                  style: const TextStyle(fontSize: 20.0),
                   onChanged: (value) {
                     try {
                       amount = int.parse(value);

@@ -85,7 +85,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                     width: dataFilterValue == 'Monthly' ||
                             dataFilterValue == 'Custom'
                         ? MediaQuery.of(context).size.width * 0.26
-                        : MediaQuery.of(context).size.width * 0.40,
+                        : MediaQuery.of(context).size.width * 0.30,
                     height: MediaQuery.of(context).size.height * 0.06,
                     decoration: BoxDecoration(
                         color: appThemeColor,
@@ -93,10 +93,11 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                     child: Center(
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton(
+                            alignment: AlignmentDirectional.center,
                             iconEnabledColor: Colors.white,
                             dropdownColor: appThemeColor,
                             style: const TextStyle(
-                                color: Colors.white, fontSize: 12),
+                                color: Colors.white, fontSize: 14),
                             items: types
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
@@ -118,7 +119,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                     width: dataFilterValue == 'Monthly' ||
                             dataFilterValue == 'Custom'
                         ? MediaQuery.of(context).size.width * 0.26
-                        : MediaQuery.of(context).size.width * 0.40,
+                        : MediaQuery.of(context).size.width * 0.30,
                     height: MediaQuery.of(context).size.height * 0.06,
                     decoration: BoxDecoration(
                       color: appThemeColor,
@@ -127,11 +128,12 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                     child: Center(
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
+                            alignment: AlignmentDirectional.center,
                             iconEnabledColor: Colors.white,
                             dropdownColor: appThemeColor,
                             style: const TextStyle(
-                                color: Colors.white, fontSize: 12),
-                            borderRadius: BorderRadius.circular(10),
+                                color: Colors.white, fontSize: 14),
+                            borderRadius: BorderRadius.circular(20),
                             items: itemDataFilter
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
@@ -150,7 +152,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                   ),
                   dataFilterValue == 'Monthly'
                       ? Container(
-                          width: MediaQuery.of(context).size.width * 0.26,
+                          width: MediaQuery.of(context).size.width * 0.28,
                           height: MediaQuery.of(context).size.height * 0.06,
                           decoration: BoxDecoration(
                               color: dataFilterValue == 'Monthly'
@@ -158,14 +160,15 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                   : const Color.fromARGB(255, 201, 245, 235),
                               borderRadius: BorderRadius.circular(20.0)),
                           child: Center(
-                            child:  DropdownButtonHideUnderline(
+                            child: DropdownButtonHideUnderline(
                               child: DropdownButton(
+                                  alignment: AlignmentDirectional.center,
                                   disabledHint: const Text('Month'),
                                   menuMaxHeight: 200,
                                   iconEnabledColor: Colors.white,
                                   dropdownColor: appThemeColor,
                                   style: const TextStyle(
-                                      color: Colors.white, fontSize: 12),
+                                      color: Colors.white, fontSize: 14),
                                   borderRadius: BorderRadius.circular(10),
                                   items: dataFilterValue == 'Monthly'
                                       ? itemsYearFilter
@@ -193,7 +196,10 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                             pickDateRange();
                           },
                           color: appThemeColor,
-                          icon:  Icon(Icons.date_range,size: MediaQuery.of(context).size.width * 0.12,))
+                          icon: Icon(
+                            Icons.date_range,
+                            size: MediaQuery.of(context).size.width * 0.12,
+                          ))
                       : const SizedBox()
                 ],
               ),
@@ -539,7 +545,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                   }
                                 } else if (dataFilterValue == 'Custom') {
                                   if (dataAtIndex.dateTime.isAfter(startDate) &&
-                                  dataAtIndex.dateTime.isBefore(endDate)) {
+                                      dataAtIndex.dateTime.isBefore(endDate)) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
                                         dataAtIndex.note,
@@ -683,7 +689,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                   }
                                 } else if (dataFilterValue == 'Custom') {
                                   if (dataAtIndex.dateTime.isAfter(startDate) &&
-                                  dataAtIndex.dateTime.isBefore(endDate)) {
+                                      dataAtIndex.dateTime.isBefore(endDate)) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
                                         dataAtIndex.note,
