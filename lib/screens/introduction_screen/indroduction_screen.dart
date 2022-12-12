@@ -39,7 +39,6 @@ class _IndroduceScreenState extends State<IndroduceScreen> {
           title: 'Easily Track Expenses',
           body: 'Get graphical analysis of your expenses',
           decoration: const PageDecoration(
-              titleTextStyle: TextStyle(fontSize: 20.0),
               imagePadding: EdgeInsets.only(top: 80.0),
               bodyAlignment: Alignment.center)),
       PageViewModel(
@@ -63,6 +62,7 @@ class _IndroduceScreenState extends State<IndroduceScreen> {
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0.0, backgroundColor: appThemeColor),
       body: IntroductionScreen(
+        globalBackgroundColor: Colors.white,
         showDoneButton: true,
         showSkipButton: true,
         showNextButton: true,

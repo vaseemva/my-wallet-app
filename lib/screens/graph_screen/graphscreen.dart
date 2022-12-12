@@ -257,40 +257,46 @@ class _GraphscreenState extends State<Graphscreen> {
                             )));
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'January') {
-                    return JanuaryWalletPieChart(dataList: januaryList);
+                    return monthlyGraph(
+                        dataList: januaryList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'February') {
-                    return FebruaryWalletPieChart(dataList: februaryList);
+                    return monthlyGraph(
+                        dataList: februaryList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'March') {
-                    return MarchWalletPieChart(dataList: marchList);
+                    return monthlyGraph(dataList: marchList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'April') {
-                    return AprilWalletPieChart(dataList: aprilList);
+                    return monthlyGraph(dataList: aprilList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'May') {
-                    return MayWalletPieChart(dataList: mayList);
+                    return monthlyGraph(dataList: mayList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'June') {
-                    return JuneWalletPieChart(dataList: juneList);
+                    return monthlyGraph(dataList: juneList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'July') {
-                    return JulyWalletPieChart(dataList: julyList);
+                    return monthlyGraph(dataList: julyList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'August') {
-                    return AugustWalletPieChart(dataList: augustList);
+                    return monthlyGraph(dataList: augustList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'September') {
-                    return SeptemberWalletPieChart(dataList: septemberList);
+                    return monthlyGraph(
+                        dataList: septemberList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'October') {
-                    return OctoberWalletPieChart(dataList: octoberList);
+                    return monthlyGraph(
+                        dataList: octoberList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'November') {
-                    return NovemberWalletPieChart(dataList: novemberList);
+                    return monthlyGraph(
+                        dataList: novemberList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'December') {
-                    return DecemberWalletPieChart(dataList: decemberList);
+                    return monthlyGraph(
+                        dataList: decemberList, context: context);
                   }
                   return const SizedBox();
                 } else {

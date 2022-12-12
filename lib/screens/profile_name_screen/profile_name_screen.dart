@@ -46,7 +46,7 @@ class NameScreen extends StatelessWidget {
                         hintText: 'Your Name',
                         border: InputBorder.none,
                         counterText: ""),
-                    maxLength: 12,
+                    maxLength: 15,
                   )),
               const SizedBox(
                 height: 12.0,

@@ -13,13 +13,13 @@ class AllTransactionScreen extends StatefulWidget {
 }
 
 String dataFilterValue = 'All';
-String yearFilterValue = 'January';
+String yearFilterValue = 'JAN';
 
 String dropDownValue = 'All';
 
 class _AllTransactionScreenState extends State<AllTransactionScreen> {
   DateTimeRange dateRange =
-      DateTimeRange(start: DateTime(2022, 1, 1), end: DateTime.now());
+      DateTimeRange(start: DateTime.now(), end: DateTime.now());
   Future pickDateRange() async {
     DateTimeRange? newDateRange = await showDateRangePicker(
         context: context,
@@ -46,18 +46,18 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
   ];
 
   final itemsYearFilter = <String>[
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    'JAN',
+    'FEB',
+    'MAR',
+    'APR',
+    'MAY',
+    'JUN',
+    'JUL',
+    'AUG',
+    'SEP',
+    'OCT',
+    'NOV',
+    'DEC'
   ];
   Dbhelper dbhelper = Dbhelper();
   @override
@@ -151,44 +151,49 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                     ),
                   ),
                   dataFilterValue == 'Monthly'
-                      ? Container(
-                          width: MediaQuery.of(context).size.width * 0.28,
-                          height: MediaQuery.of(context).size.height * 0.06,
-                          decoration: BoxDecoration(
-                              color: dataFilterValue == 'Monthly'
-                                  ? appThemeColor
-                                  : const Color.fromARGB(255, 201, 245, 235),
-                              borderRadius: BorderRadius.circular(20.0)),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                  alignment: AlignmentDirectional.center,
-                                  disabledHint: const Text('Month'),
-                                  menuMaxHeight: 200,
-                                  iconEnabledColor: Colors.white,
-                                  dropdownColor: appThemeColor,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                  borderRadius: BorderRadius.circular(10),
-                                  items: dataFilterValue == 'Monthly'
-                                      ? itemsYearFilter
-                                          .map<DropdownMenuItem<String>>(
-                                              (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList()
-                                      : null,
-                                  value: yearFilterValue,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      yearFilterValue = newValue!;
-                                    });
-                                  }),
+                      ? Row(
+                        children: [
+                        const  SizedBox(width: 8,),
+                          Container(
+                              width: MediaQuery.of(context).size.width * 0.22,
+                              height: MediaQuery.of(context).size.height * 0.06,
+                              decoration: BoxDecoration(
+                                  color: dataFilterValue == 'Monthly'
+                                      ? appThemeColor
+                                      : const Color.fromARGB(255, 201, 245, 235),
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              child: Center(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                      alignment: AlignmentDirectional.center,
+                                      disabledHint: const Text('Month'),
+                                      menuMaxHeight: 200,
+                                      iconEnabledColor: Colors.white,
+                                      dropdownColor: appThemeColor,
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 14),
+                                      borderRadius: BorderRadius.circular(10),
+                                      items: dataFilterValue == 'Monthly'
+                                          ? itemsYearFilter
+                                              .map<DropdownMenuItem<String>>(
+                                                  (String value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }).toList()
+                                          : null,
+                                      value: yearFilterValue,
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          yearFilterValue = newValue!;
+                                        });
+                                      }),
+                                ),
+                              ),
                             ),
-                          ),
-                        )
+                        ],
+                      )
                       : const SizedBox(),
                   dataFilterValue == 'Custom'
                       ? IconButton(
@@ -198,7 +203,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                           color: appThemeColor,
                           icon: Icon(
                             Icons.date_range,
-                            size: MediaQuery.of(context).size.width * 0.12,
+                            size: MediaQuery.of(context).size.width * 0.11,
                           ))
                       : const SizedBox()
                 ],
@@ -262,7 +267,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                   dataAtIndex.dateTime);
                             } else if (dataFilterValue == 'Monthly') {
                               //Monthly
-                              if (yearFilterValue == 'January' &&
+                              if (yearFilterValue == 'JAN' &&
                                   dataAtIndex.dateTime.month == 1) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -271,7 +276,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'February' &&
+                              } else if (yearFilterValue == 'FEB' &&
                                   dataAtIndex.dateTime.month == 2) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -280,7 +285,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'March' &&
+                              } else if (yearFilterValue == 'MAR' &&
                                   dataAtIndex.dateTime.month == 3) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -289,7 +294,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'April' &&
+                              } else if (yearFilterValue == 'APR' &&
                                   dataAtIndex.dateTime.month == 4) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -298,7 +303,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'May' &&
+                              } else if (yearFilterValue == 'MAY' &&
                                   dataAtIndex.dateTime.month == 5) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -307,7 +312,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'June' &&
+                              } else if (yearFilterValue == 'JUN' &&
                                   dataAtIndex.dateTime.month == 6) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -316,7 +321,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'July' &&
+                              } else if (yearFilterValue == 'JUL' &&
                                   dataAtIndex.dateTime.month == 7) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -325,7 +330,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'August' &&
+                              } else if (yearFilterValue == 'AUG' &&
                                   dataAtIndex.dateTime.month == 8) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -334,7 +339,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'September' &&
+                              } else if (yearFilterValue == 'SEP' &&
                                   dataAtIndex.dateTime.month == 9) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -343,7 +348,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'October' &&
+                              } else if (yearFilterValue == 'OCT' &&
                                   dataAtIndex.dateTime.month == 10) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -352,7 +357,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'November' &&
+                              } else if (yearFilterValue == 'NOV' &&
                                   dataAtIndex.dateTime.month == 11) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -361,7 +366,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'December' &&
+                              } else if (yearFilterValue == 'DEC' &&
                                   dataAtIndex.dateTime.month == 12) {
                                 return allTransactionIncomeTile(
                                     dataAtIndex.amount,
@@ -409,7 +414,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                               }
                             } else if (dataFilterValue == 'Monthly') {
                               //Monthly
-                              if (yearFilterValue == 'January' &&
+                              if (yearFilterValue == 'JAN' &&
                                   dataAtIndex.dateTime.month == 1) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -418,7 +423,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'February' &&
+                              } else if (yearFilterValue == 'FEB' &&
                                   dataAtIndex.dateTime.month == 2) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -427,7 +432,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'March' &&
+                              } else if (yearFilterValue == 'MAR' &&
                                   dataAtIndex.dateTime.month == 3) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -436,7 +441,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'April' &&
+                              } else if (yearFilterValue == 'APR' &&
                                   dataAtIndex.dateTime.month == 4) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -445,7 +450,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'May' &&
+                              } else if (yearFilterValue == 'MAY' &&
                                   dataAtIndex.dateTime.month == 5) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -454,7 +459,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'June' &&
+                              } else if (yearFilterValue == 'JUN' &&
                                   dataAtIndex.dateTime.month == 6) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -463,7 +468,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'July' &&
+                              } else if (yearFilterValue == 'JUL' &&
                                   dataAtIndex.dateTime.month == 7) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -472,7 +477,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'August' &&
+                              } else if (yearFilterValue == 'AUG' &&
                                   dataAtIndex.dateTime.month == 8) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -481,7 +486,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'September' &&
+                              } else if (yearFilterValue == 'SEP' &&
                                   dataAtIndex.dateTime.month == 9) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -490,7 +495,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'October' &&
+                              } else if (yearFilterValue == 'OCT' &&
                                   dataAtIndex.dateTime.month == 10) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -499,7 +504,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'November' &&
+                              } else if (yearFilterValue == 'NOV' &&
                                   dataAtIndex.dateTime.month == 11) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -508,7 +513,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                     index,
                                     dataAtIndex.type,
                                     dataAtIndex.dateTime);
-                              } else if (yearFilterValue == 'December' &&
+                              } else if (yearFilterValue == 'DEC' &&
                                   dataAtIndex.dateTime.month == 12) {
                                 return allTransactionExpenseTile(
                                     dataAtIndex.amount,
@@ -555,7 +560,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         dataAtIndex.dateTime);
                                   }
                                 } else if (dataFilterValue == 'Monthly') {
-                                  if (yearFilterValue == 'January' &&
+                                  if (yearFilterValue == 'JAN' &&
                                       dataAtIndex.dateTime.month == 1) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -564,7 +569,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'February' &&
+                                  } else if (yearFilterValue == 'FEB' &&
                                       dataAtIndex.dateTime.month == 2) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -573,7 +578,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'March' &&
+                                  } else if (yearFilterValue == 'MAR' &&
                                       dataAtIndex.dateTime.month == 3) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -582,7 +587,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'April' &&
+                                  } else if (yearFilterValue == 'APR' &&
                                       dataAtIndex.dateTime.month == 4) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -591,7 +596,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'May' &&
+                                  } else if (yearFilterValue == 'MAY' &&
                                       dataAtIndex.dateTime.month == 5) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -600,7 +605,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'June' &&
+                                  } else if (yearFilterValue == 'JUN' &&
                                       dataAtIndex.dateTime.month == 6) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -609,7 +614,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'July' &&
+                                  } else if (yearFilterValue == 'JUL' &&
                                       dataAtIndex.dateTime.month == 7) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -618,7 +623,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'August' &&
+                                  } else if (yearFilterValue == 'AUG' &&
                                       dataAtIndex.dateTime.month == 8) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -627,7 +632,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'September' &&
+                                  } else if (yearFilterValue == 'SEP' &&
                                       dataAtIndex.dateTime.month == 9) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -636,7 +641,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'October' &&
+                                  } else if (yearFilterValue == 'OCT' &&
                                       dataAtIndex.dateTime.month == 10) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -645,7 +650,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'November' &&
+                                  } else if (yearFilterValue == 'NOV' &&
                                       dataAtIndex.dateTime.month == 11) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -654,7 +659,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'December' &&
+                                  } else if (yearFilterValue == 'DEC' &&
                                       dataAtIndex.dateTime.month == 12) {
                                     return allTransactionIncomeTile(
                                         dataAtIndex.amount,
@@ -699,7 +704,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         dataAtIndex.dateTime);
                                   }
                                 } else if (dataFilterValue == 'Monthly') {
-                                  if (yearFilterValue == 'January' &&
+                                  if (yearFilterValue == 'JAN' &&
                                       dataAtIndex.dateTime.month == 1) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -708,7 +713,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'February' &&
+                                  } else if (yearFilterValue == 'FEB' &&
                                       dataAtIndex.dateTime.month == 2) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -717,7 +722,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'March' &&
+                                  } else if (yearFilterValue == 'MAR' &&
                                       dataAtIndex.dateTime.month == 3) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -726,7 +731,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'April' &&
+                                  } else if (yearFilterValue == 'APR' &&
                                       dataAtIndex.dateTime.month == 4) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -735,7 +740,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'May' &&
+                                  } else if (yearFilterValue == 'MAY' &&
                                       dataAtIndex.dateTime.month == 5) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -744,7 +749,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'June' &&
+                                  } else if (yearFilterValue == 'JUN' &&
                                       dataAtIndex.dateTime.month == 6) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -753,7 +758,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'July' &&
+                                  } else if (yearFilterValue == 'JUL' &&
                                       dataAtIndex.dateTime.month == 7) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -762,7 +767,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'August' &&
+                                  } else if (yearFilterValue == 'AUG' &&
                                       dataAtIndex.dateTime.month == 8) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -771,7 +776,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'September' &&
+                                  } else if (yearFilterValue == 'SEP' &&
                                       dataAtIndex.dateTime.month == 9) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -780,7 +785,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'October' &&
+                                  } else if (yearFilterValue == 'OCT' &&
                                       dataAtIndex.dateTime.month == 10) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -789,7 +794,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'November' &&
+                                  } else if (yearFilterValue == 'NOV' &&
                                       dataAtIndex.dateTime.month == 11) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,
@@ -798,7 +803,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                                         index,
                                         dataAtIndex.type,
                                         dataAtIndex.dateTime);
-                                  } else if (yearFilterValue == 'December' &&
+                                  } else if (yearFilterValue == 'DEC' &&
                                       dataAtIndex.dateTime.month == 12) {
                                     return allTransactionExpenseTile(
                                         dataAtIndex.amount,

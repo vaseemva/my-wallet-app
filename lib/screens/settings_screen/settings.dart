@@ -1,6 +1,7 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:my_wallet_app/colors/colors.dart';
+import 'package:my_wallet_app/screens/settings_screen/widgets.dart';
 import 'package:my_wallet_app/screens/splash_screen/splash_screen.dart';
 import 'package:my_wallet_app/widgets/widgets.dart';
 import '../../controllers/db_helper.dart';
@@ -40,19 +41,33 @@ class _SettingsState extends State<Settings> {
             ),
             onTap: () => resetDialogue(),
           ),
-          settingsTile(
-            title: 'Privacy & Policy',
-            icon: Icons.privacy_tip,
+          InkWell(
+            child: settingsTile(
+              title: 'About us',
+              icon: Icons.people,
+            ),
+            onTap: (){
+              showModalBottomSheet(context: context, builder: (context)=>const AboutUsWidget());
+            },
           ),
           InkWell(
               child: settingsTile(
                 title: 'Feedback',
                 icon: Icons.message_outlined,
               ),
-              onTap: () {}),
-          settingsTile(
-            title: 'About us',
-            icon: Icons.people,
+              onTap: () {
+                sendMail();
+              }),
+          InkWell(
+            child: settingsTile(
+              title: 'Privacy & Policy',
+              icon: Icons.privacy_tip,
+            ),
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const PrivacyPolicy());
+            },
           ),
         ],
       ),
@@ -64,7 +79,9 @@ class _SettingsState extends State<Settings> {
       builder: (context) => AlertDialog(
             title: const Text('Enter New Name'),
             content: TextField(
-              decoration: const InputDecoration(hintText: 'New name'),
+              decoration:
+                  const InputDecoration(hintText: 'New name', counterText: ""),
+              maxLength: 15,
               onChanged: (value) {
                 newName = value;
               },
