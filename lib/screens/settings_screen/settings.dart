@@ -21,6 +21,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: appThemeColor,
         title: const Text('Settings'),
         centerTitle: true,
@@ -46,8 +47,10 @@ class _SettingsState extends State<Settings> {
               title: 'About us',
               icon: Icons.people,
             ),
-            onTap: (){
-              showModalBottomSheet(context: context, builder: (context)=>const AboutUsWidget());
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const AboutUsWidget());
             },
           ),
           InkWell(

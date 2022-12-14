@@ -17,8 +17,8 @@ Widget noGraph(BuildContext context) {
           width: MediaQuery.of(context).size.width * 0.7,
         ),
         const Text(
-          "Not enough data to render chart",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          "No data to render chart",
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
     ),
@@ -37,7 +37,7 @@ Widget dropDownContainer(BuildContext context, {child}) {
   );
 }
 
-Widget monthlyGraph(
+Widget graphWidget(
     {required List<TransactionModel> dataList, required BuildContext context}) {
   List<TransactionModel> datas = dataList;
   double totalIncome = 0;
@@ -93,4 +93,16 @@ Widget monthlyGraph(
           )),
     ],
   ));
+}
+
+Widget statisticsText(BuildContext context) {
+  return SizedBox(
+    height: MediaQuery.of(context).size.height * 0.1,
+    child: const Center(
+      child: Text(
+        'Statistics',
+        style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+      ),
+    ),
+  );
 }

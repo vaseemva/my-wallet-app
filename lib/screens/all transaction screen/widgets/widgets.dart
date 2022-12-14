@@ -4,8 +4,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/screens/edit_transaction_screen/edit_transaction_screen.dart';
 
-import '../../colors/colors.dart';
-import '../home screens/home_screen.dart';
+import '../../../colors/colors.dart';
+import '../../home screens/home_screen.dart';
 
 Dbhelper dbhelper = Dbhelper();
 Widget noDataCard() {
@@ -88,7 +88,7 @@ Widget allTransactionExpenseTile(int amount, String note, String date,
               Text(
                 "- ₹ $amount",
                 style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w200,
                     color: Colors.white),
               )
@@ -171,7 +171,7 @@ Widget allTransactionIncomeTile(int amount, String note, String date, int index,
               Text(
                 "- ₹ $amount",
                 style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w200,
                     color: Colors.white),
               )

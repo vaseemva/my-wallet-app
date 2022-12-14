@@ -1,7 +1,7 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:my_wallet_app/screens/edit_transaction_screen/widgets.dart';
 import '../../colors/colors.dart';
 import '../../controllers/db_helper.dart';
 import '../home screens/home_screen.dart';
@@ -92,15 +92,7 @@ class _EditTransactionState extends State<EditTransaction> {
           ),
           Row(
             children: [
-              Container(
-                  decoration: BoxDecoration(
-                      color: appThemeColor,
-                      borderRadius: BorderRadius.circular(16.0)),
-                  padding: const EdgeInsets.all(12.0),
-                  child: const Icon(
-                    Icons.currency_rupee,
-                    color: Colors.white,
-                  )),
+              sympolContainer(Icons.currency_rupee),
               const SizedBox(
                 width: 15.0,
               ),
@@ -111,31 +103,21 @@ class _EditTransactionState extends State<EditTransaction> {
                     amount = int.parse(value);
                   },
                   decoration: const InputDecoration(
-                      hintText: '0', border: InputBorder.none),
+                      hintText: '0', border: InputBorder.none, counterText: ""),
                   style: const TextStyle(fontSize: 20.0),
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
+                  maxLength: 8,
                 ),
               ),
             ],
           ),
           const SizedBox(
-            height: 15.0,
-          ),
-          const SizedBox(
-            height: 15.0,
+            height: 30.0,
           ),
           Row(
             children: [
-              Container(
-                  decoration: BoxDecoration(
-                      color: appThemeColor,
-                      borderRadius: BorderRadius.circular(16.0)),
-                  padding: const EdgeInsets.all(12.0),
-                  child: const Icon(
-                    Icons.category,
-                    color: Colors.white,
-                  )),
+              sympolContainer(Icons.category),
               const SizedBox(
                 width: 15.0,
               ),
@@ -185,15 +167,7 @@ class _EditTransactionState extends State<EditTransaction> {
                   padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
               child: Row(
                 children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          color: appThemeColor,
-                          borderRadius: BorderRadius.circular(16.0)),
-                      padding: const EdgeInsets.all(12.0),
-                      child: const Icon(
-                        Icons.calendar_month_outlined,
-                        color: Colors.white,
-                      )),
+                  sympolContainer(Icons.calendar_month_outlined),
                   const SizedBox(
                     width: 15.0,
                   ),
@@ -210,15 +184,7 @@ class _EditTransactionState extends State<EditTransaction> {
           ),
           Row(
             children: [
-              Container(
-                  decoration: BoxDecoration(
-                      color: appThemeColor,
-                      borderRadius: BorderRadius.circular(16.0)),
-                  padding: const EdgeInsets.all(12.0),
-                  child: const Icon(
-                    Icons.notes,
-                    color: Colors.white,
-                  )),
+              sympolContainer(Icons.notes),
               const SizedBox(
                 width: 15.0,
               ),
@@ -226,11 +192,14 @@ class _EditTransactionState extends State<EditTransaction> {
                 child: TextField(
                   controller: editNoteController,
                   decoration: const InputDecoration(
-                      hintText: 'Notes', border: InputBorder.none),
+                      hintText: 'Title',
+                      border: InputBorder.none,
+                      counterText: ""),
                   style: const TextStyle(fontSize: 16.0),
                   onChanged: (value) {
                     note = value;
                   },
+                  maxLength: 12,
                 ),
               ),
             ],

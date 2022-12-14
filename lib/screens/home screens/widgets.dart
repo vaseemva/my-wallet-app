@@ -50,6 +50,7 @@ Widget homeWalletCard(
             'Total Balance',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 22.0, color: Colors.white),
+            overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(
             height: 12.0,

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_wallet_app/screens/graph_screen/widgets.dart';
-
-import 'package:pie_chart/pie_chart.dart';
-
 import '../../colors/colors.dart';
 import '../../controllers/db_helper.dart';
 import '../../models/transaction_model.dart';
@@ -152,15 +149,7 @@ class _GraphscreenState extends State<Graphscreen> {
       ),
       body: ListView(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: const Center(
-              child: Text(
-                'Statistics',
-                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          statisticsText(context),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -240,62 +229,47 @@ class _GraphscreenState extends State<Graphscreen> {
                     return Center(child: noGraph(context));
                   }
                   if (graphFilterValue == 'All') {
-                    return Center(
-                        child: SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            child: PieChart(
-                              chartRadius: 250,
-                              legendOptions: const LegendOptions(
-                                  legendPosition: LegendPosition.bottom),
-                              chartValuesOptions: const ChartValuesOptions(
-                                  showChartValuesInPercentage: true),
-                              dataMap: dataMap,
-                              colorList: chartColors,
-                              chartType: ChartType.ring,
-                              ringStrokeWidth: 50.0,
-                            )));
+                    return graphWidget(
+                        dataList: snapshot.data!, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'January') {
-                    return monthlyGraph(
-                        dataList: januaryList, context: context);
+                    return graphWidget(dataList: januaryList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'February') {
-                    return monthlyGraph(
+                    return graphWidget(
                         dataList: februaryList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'March') {
-                    return monthlyGraph(dataList: marchList, context: context);
+                    return graphWidget(dataList: marchList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'April') {
-                    return monthlyGraph(dataList: aprilList, context: context);
+                    return graphWidget(dataList: aprilList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'May') {
-                    return monthlyGraph(dataList: mayList, context: context);
+                    return graphWidget(dataList: mayList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'June') {
-                    return monthlyGraph(dataList: juneList, context: context);
+                    return graphWidget(dataList: juneList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'July') {
-                    return monthlyGraph(dataList: julyList, context: context);
+                    return graphWidget(dataList: julyList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'August') {
-                    return monthlyGraph(dataList: augustList, context: context);
+                    return graphWidget(dataList: augustList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'September') {
-                    return monthlyGraph(
+                    return graphWidget(
                         dataList: septemberList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'October') {
-                    return monthlyGraph(
-                        dataList: octoberList, context: context);
+                    return graphWidget(dataList: octoberList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'November') {
-                    return monthlyGraph(
+                    return graphWidget(
                         dataList: novemberList, context: context);
                   } else if (graphFilterValue == 'Monthly' &&
                       monthsFilterValue == 'December') {
-                    return monthlyGraph(
+                    return graphWidget(
                         dataList: decemberList, context: context);
                   }
                   return const SizedBox();

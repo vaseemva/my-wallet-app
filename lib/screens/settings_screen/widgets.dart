@@ -63,6 +63,7 @@ class PrivacyPolicy extends StatelessWidget {
     );
   }
 }
+
 class AboutUsWidget extends StatelessWidget {
   const AboutUsWidget({super.key});
 
@@ -72,7 +73,9 @@ class AboutUsWidget extends StatelessWidget {
       height: 320,
       child: Column(
         children: [
-        const  SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 20),
             child: Text(
@@ -80,7 +83,7 @@ class AboutUsWidget extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-        const  SizedBox(height: 10),
+          const SizedBox(height: 10),
           Column(
             children: [
               const Padding(
@@ -88,12 +91,12 @@ class AboutUsWidget extends StatelessWidget {
                 child: Text(
                   "I'm Vaseem Anwar, a growing flutter developer. This app is my first flutter project, and it can help you develop better financial habits. If you have any questions or comments, please get in touch with me. visit vaseemanwar.netlify.app, my website.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    height: 1.5
-                  ),
+                  style: TextStyle(height: 1.5),
                 ),
               ),
-            const  SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();

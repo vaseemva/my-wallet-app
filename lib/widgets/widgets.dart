@@ -28,9 +28,10 @@ Widget incomeCard(String value) {
           Text(
             '₹ $value',
             style: const TextStyle(
-                fontSize: 18.0,
+                fontSize: 17.0,
                 fontWeight: FontWeight.w700,
                 color: Colors.white),
+            overflow: TextOverflow.visible,
           )
         ],
       )
@@ -65,9 +66,10 @@ Widget expenseCard(String value) {
           Text(
             '₹ $value',
             style: const TextStyle(
-                fontSize: 18.0,
+                fontSize: 17.0,
                 fontWeight: FontWeight.w700,
                 color: Colors.white),
+            overflow: TextOverflow.ellipsis,
           )
         ],
       )
