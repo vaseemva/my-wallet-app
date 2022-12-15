@@ -1,9 +1,9 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/screens/edit_transaction_screen/edit_transaction_screen.dart';
-
 import '../../../colors/colors.dart';
 import '../../home screens/home_screen.dart';
 
@@ -46,55 +46,62 @@ Widget allTransactionExpenseTile(int amount, String note, String date,
         icon: Icons.edit,
       )
     ]),
-    child: Container(
-      margin: const EdgeInsets.all(7.0),
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-          color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.arrow_circle_down_outlined,
-                    size: 40.0,
-                    color: Colors.red[700],
-                  ),
-                  const SizedBox(
-                    width: 12.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        note,
-                        style: const TextStyle(
-                            fontSize: 15.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        date,
-                        style: const TextStyle(color: Colors.white),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              Text(
-                "- ₹ $amount",
-                style: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w200,
-                    color: Colors.white),
-              )
-            ],
-          ),
-        ],
+    child: GestureDetector(
+      onTap: () {
+         Fluttertoast.showToast(
+                          msg: 'Swipe to edit or delete',
+                          backgroundColor:const Color.fromARGB(255, 74, 101, 115));
+      },
+      child: Container(
+        margin: const EdgeInsets.all(7.0),
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_circle_down_outlined,
+                      size: 40.0,
+                      color: Colors.red[700],
+                    ),
+                    const SizedBox(
+                      width: 12.0,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          note,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          date,
+                          style: const TextStyle(color: Colors.white),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                Text(
+                  "- ₹ $amount",
+                  style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -129,55 +136,62 @@ Widget allTransactionIncomeTile(int amount, String note, String date, int index,
         icon: Icons.edit,
       )
     ]),
-    child: Container(
-      margin: const EdgeInsets.all(7.0),
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-          color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.arrow_circle_up_outlined,
-                    size: 40.0,
-                    color: Colors.green[700],
-                  ),
-                  const SizedBox(
-                    width: 12.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        note,
-                        style: const TextStyle(
-                            fontSize: 15.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        date,
-                        style: const TextStyle(color: Colors.white),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              Text(
-                "- ₹ $amount",
-                style: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w200,
-                    color: Colors.white),
-              )
-            ],
-          ),
-        ],
+    child: GestureDetector(
+      onTap: () {
+         Fluttertoast.showToast(
+                          msg: 'Swipe to edit or delete',
+                          backgroundColor:const Color.fromARGB(255, 74, 101, 115));
+      },
+      child: Container(
+        margin: const EdgeInsets.all(7.0),
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            color: appThemeColor, borderRadius: BorderRadius.circular(8.0)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_circle_up_outlined,
+                      size: 40.0,
+                      color: Colors.green[700],
+                    ),
+                    const SizedBox(
+                      width: 12.0,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          note,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          date,
+                          style: const TextStyle(color: Colors.white),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                Text(
+                  "- ₹ $amount",
+                  style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );

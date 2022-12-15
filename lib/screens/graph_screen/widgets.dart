@@ -27,8 +27,9 @@ Widget noGraph(BuildContext context) {
 
 Widget dropDownContainer(BuildContext context, {child}) {
   return Container(
-    width: MediaQuery.of(context).size.width * 0.40,
+    width: MediaQuery.of(context).size.width * 0.30,
     height: MediaQuery.of(context).size.height * 0.06,
+    
     decoration: BoxDecoration(
       color: appThemeColor,
       borderRadius: BorderRadius.circular(20),

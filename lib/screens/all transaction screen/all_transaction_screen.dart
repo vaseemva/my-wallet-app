@@ -150,9 +150,7 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
                   dataFilterValue == 'Monthly'
                       ? Row(
                           children: [
-                            const SizedBox(
-                              width: 8,
-                            ),
+                            const SizedBox(width: 8),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.22,
                               height: MediaQuery.of(context).size.height * 0.06,
