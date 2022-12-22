@@ -29,7 +29,7 @@ class Dbhelper {
 
   addname(String name) async {
     preferences = await SharedPreferences.getInstance();
-    preferences.setString("name", name);
+    preferences.setString("name", name.trim());
   }
 
   getname() async {
@@ -37,7 +37,7 @@ class Dbhelper {
     return preferences.getString("name");
   }
 
-  Future<List<TransactionModel>> fetch() async {
+  Future<List<TransactionModel>> fetchSavedData() async {
     if (box.values.isEmpty) {
       return Future.value([]);
     } else {

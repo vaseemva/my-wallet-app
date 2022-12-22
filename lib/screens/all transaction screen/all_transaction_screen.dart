@@ -12,6 +12,8 @@ class AllTransactionScreen extends StatefulWidget {
   State<AllTransactionScreen> createState() => _AllTransactionScreenState();
 }
 
+bool monthlydropdownvisiblity = false;
+bool customdatevisiblity = false;
 String dataFilterValue = 'All';
 String yearFilterValue = 'JAN';
 String dropDownValue = 'All';
@@ -75,141 +77,154 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
         child: ListView(
           children: [
             SingleChildScrollView(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: dataFilterValue == 'Monthly' ||
-                            dataFilterValue == 'Custom'
-                        ? MediaQuery.of(context).size.width * 0.26
-                        : MediaQuery.of(context).size.width * 0.30,
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    decoration: BoxDecoration(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: dataFilterValue == 'Monthly' ||
+                              dataFilterValue == 'Custom'
+                          ? MediaQuery.of(context).size.width * 0.26
+                          : MediaQuery.of(context).size.width * 0.30,
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      decoration: BoxDecoration(
+                          color: appThemeColor,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Center(
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                              alignment: AlignmentDirectional.center,
+                              iconEnabledColor: Colors.white,
+                              dropdownColor: appThemeColor,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 14),
+                              items: types.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              value: dropDownValue,
+                              onChanged: (String? newvalue) {
+                                setState(() {
+                                  dropDownValue = newvalue!;
+                                });
+                              }),
+                        ),
+                      ),
+                    ),
+                    dataFilterValue == 'Monthly' || dataFilterValue == 'Custom'
+                        ? const SizedBox(width: 7)
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15),
+                    Container(
+                      width: dataFilterValue == 'Monthly' ||
+                              dataFilterValue == 'Custom'
+                          ? MediaQuery.of(context).size.width * 0.26
+                          : MediaQuery.of(context).size.width * 0.30,
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      decoration: BoxDecoration(
                         color: appThemeColor,
-                        borderRadius: BorderRadius.circular(20.0)),
-                    child: Center(
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            alignment: AlignmentDirectional.center,
-                            iconEnabledColor: Colors.white,
-                            dropdownColor: appThemeColor,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 14),
-                            items: types
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            value: dropDownValue,
-                            onChanged: (String? newvalue) {
-                              setState(() {
-                                dropDownValue = newvalue!;
-                              });
-                            }),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                              alignment: AlignmentDirectional.center,
+                              iconEnabledColor: Colors.white,
+                              dropdownColor: appThemeColor,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 14),
+                              borderRadius: BorderRadius.circular(20),
+                              items: itemDataFilter
+                                  .map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              value: dataFilterValue,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dataFilterValue = newValue!;
+                                  monthlydropdownvisiblity =
+                                      dataFilterValue == 'Monthly';
+                                  customdatevisiblity =
+                                      dataFilterValue == 'Custom';
+                                });
+                              }),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: dataFilterValue == 'Monthly' ||
-                            dataFilterValue == 'Custom'
-                        ? MediaQuery.of(context).size.width * 0.26
-                        : MediaQuery.of(context).size.width * 0.30,
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    decoration: BoxDecoration(
-                      color: appThemeColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                            alignment: AlignmentDirectional.center,
-                            iconEnabledColor: Colors.white,
-                            dropdownColor: appThemeColor,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 14),
-                            borderRadius: BorderRadius.circular(20),
-                            items: itemDataFilter
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            value: dataFilterValue,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dataFilterValue = newValue!;
-                              });
-                            }),
-                      ),
-                    ),
-                  ),
-                  dataFilterValue == 'Monthly'
-                      ? Row(
-                          children: [
-                            const SizedBox(width: 8),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.22,
-                              height: MediaQuery.of(context).size.height * 0.06,
-                              decoration: BoxDecoration(
-                                  color: dataFilterValue == 'Monthly'
-                                      ? appThemeColor
-                                      : const Color.fromARGB(
-                                          255, 201, 245, 235),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: Center(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                      alignment: AlignmentDirectional.center,
-                                      disabledHint: const Text('Month'),
-                                      menuMaxHeight: 200,
-                                      iconEnabledColor: Colors.white,
-                                      dropdownColor: appThemeColor,
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 14),
-                                      borderRadius: BorderRadius.circular(10),
-                                      items: dataFilterValue == 'Monthly'
-                                          ? itemsYearFilter
-                                              .map<DropdownMenuItem<String>>(
-                                                  (String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList()
-                                          : null,
-                                      value: yearFilterValue,
-                                      onChanged: (String? newValue) {
-                                        setState(() {
-                                          yearFilterValue = newValue!;
-                                        });
-                                      }),
-                                ),
+                    Visibility(
+                      visible: monthlydropdownvisiblity,
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 8),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.20,
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            decoration: BoxDecoration(
+                                color: dataFilterValue == 'Monthly'
+                                    ? appThemeColor
+                                    : const Color.fromARGB(255, 201, 245, 235),
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Center(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                    alignment: AlignmentDirectional.center,
+                                    disabledHint: const Text('Month'),
+                                    menuMaxHeight: 200,
+                                    iconEnabledColor: Colors.white,
+                                    dropdownColor: appThemeColor,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 14),
+                                    borderRadius: BorderRadius.circular(10),
+                                    items: dataFilterValue == 'Monthly'
+                                        ? itemsYearFilter
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: Text(value),
+                                            );
+                                          }).toList()
+                                        : null,
+                                    value: yearFilterValue,
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        yearFilterValue = newValue!;
+                                      });
+                                    }),
                               ),
                             ),
-                          ],
-                        )
-                      : const SizedBox(),
-                  dataFilterValue == 'Custom'
-                      ? IconButton(
+                          ),
+                        ],
+                      ),
+                    ),
+                    Visibility(
+                      visible: customdatevisiblity,
+                      child: IconButton(
+                          padding: const EdgeInsets.only(bottom: 0),
                           onPressed: () {
                             pickDateRange();
                           },
                           color: appThemeColor,
                           icon: Icon(
                             Icons.date_range,
-                            size: MediaQuery.of(context).size.width * 0.11,
-                          ))
-                      : const SizedBox()
-                ],
+                            size: MediaQuery.of(context).size.height * 0.06,
+                          )),
+                    )
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20),
             FutureBuilder<List<TransactionModel>>(
-                future: dbhelper.fetch(),
+                future: dbhelper.fetchSavedData(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Center(

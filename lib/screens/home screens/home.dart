@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
     getpreferences();
 
     box = Hive.box('transactions');
-    dbhelper.fetch();
+    dbhelper.fetchSavedData();
   }
 
   @override
@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
         backgroundColor: appThemeColor,
       ),
       body: FutureBuilder<List<TransactionModel>>(
-          future: dbhelper.fetch(),
+          future: dbhelper.fetchSavedData(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Center(child: SizedBox());

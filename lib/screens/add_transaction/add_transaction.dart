@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_wallet_app/colors/colors.dart';
 import 'package:my_wallet_app/controllers/db_helper.dart';
 import 'package:my_wallet_app/screens/add_transaction/widgets.dart';
-
 import 'package:my_wallet_app/screens/home%20screens/home_screen.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -56,9 +55,14 @@ class _AddTransactionState extends State<AddTransaction> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
-          'Add Transaction',
-          style: TextStyle(color: Colors.black),
+        title: Column(
+          children:const [
+            SizedBox(height: 10.0,),
+            Text(
+              'Add Transaction',
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
         ),
         centerTitle: true,
       ),
@@ -66,7 +70,31 @@ class _AddTransactionState extends State<AddTransaction> {
         padding: const EdgeInsets.all(16.0),
         children: [
           const SizedBox(
-            height: 50.0,
+            height: 13.0,
+          ),
+          Row(
+            children: [
+              sympolContainer(Icons.notes),
+              const SizedBox(
+                width: 15.0,
+              ),
+              Expanded(
+                child: TextField(
+                  decoration: const InputDecoration(
+                      hintText: 'Title',
+                      border: InputBorder.none,
+                      counterText: ""),
+                  style: const TextStyle(fontSize: 16.0),
+                  onChanged: (value) {
+                    note = value;
+                  },
+                  maxLength: 12,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30.0,
           ),
           Row(
             children: [
@@ -165,29 +193,9 @@ class _AddTransactionState extends State<AddTransaction> {
           const SizedBox(
             height: 20.0,
           ),
-          Row(
-            children: [
-              sympolContainer(Icons.notes),
-              const SizedBox(
-                width: 15.0,
-              ),
-              Expanded(
-                child: TextField(
-                  decoration: const InputDecoration(
-                      hintText: 'Title',
-                      border: InputBorder.none,
-                      counterText: ""),
-                  style: const TextStyle(fontSize: 16.0),
-                  onChanged: (value) {
-                    note = value;
-                  },
-                  maxLength: 12,
-                ),
-              ),
-            ],
-          ),
+          
           const SizedBox(
-            height: 20.0,
+            height: 40.0,
           ),
           SizedBox(
             height: 40.0,

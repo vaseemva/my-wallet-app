@@ -74,7 +74,7 @@ class NameScreen extends StatelessWidget {
   }
 
   saveName(BuildContext context) {
-    String name = _namecontroller.text;
+    String name = _namecontroller.text.trim();
     if (name.isNotEmpty) {
       dbhelper.addname(name);
       Navigator.of(context).pushReplacement(

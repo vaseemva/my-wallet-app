@@ -26,7 +26,7 @@ class _SettingsState extends State<Settings> {
         title: const Text('Settings'),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
         children: [
           GestureDetector(
             child: settingsTile(
@@ -72,6 +72,22 @@ class _SettingsState extends State<Settings> {
                   builder: (context) => const PrivacyPolicy());
             },
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.36,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Text(
+                'Version',
+                style: TextStyle(fontSize: 15),
+              ),
+              Text(
+                '1.0.0',
+                style: TextStyle(fontSize: 12),
+              ),
+            ],
+          )
         ],
       ),
     );

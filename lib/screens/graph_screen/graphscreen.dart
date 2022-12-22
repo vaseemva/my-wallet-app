@@ -14,9 +14,11 @@ class Graphscreen extends StatefulWidget {
 
 String graphFilterValue = "All";
 String monthsFilterValue = "January";
+bool _isvisible = false;
 
 class _GraphscreenState extends State<Graphscreen> {
   Dbhelper dbhelper = Dbhelper();
+
   double totalIncome = 0;
   double totalExpense = 0;
   final graphFilter = <String>[
@@ -106,7 +108,7 @@ class _GraphscreenState extends State<Graphscreen> {
   }
 
   late Box box;
-  Future<List<TransactionModel>> fetch() async {
+  Future<List<TransactionModel>> fetchFromDatabase() async {
     if (box.values.isEmpty) {
       return Future.value([]);
     } else {
@@ -135,7 +137,7 @@ class _GraphscreenState extends State<Graphscreen> {
   void initState() {
     super.initState();
     box = Hive.box('transactions');
-    fetch();
+    fetchFromDatabase();
     getMonthsList(arrayOfData);
   }
 
@@ -176,6 +178,7 @@ class _GraphscreenState extends State<Graphscreen> {
                           onChanged: (String? newValue) {
                             setState(() {
                               graphFilterValue = newValue!;
+                              _isvisible = newValue == 'Monthly';
                             });
                           }),
                     ),
@@ -184,41 +187,41 @@ class _GraphscreenState extends State<Graphscreen> {
                 const SizedBox(
                   width: 20.0,
                 ),
-                graphFilterValue == 'Monthly'
-                    ? dropDownContainer(
-                        context,
-                        child: Center(
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                                iconEnabledColor: Colors.white,
-                                menuMaxHeight: 130.0,
-                                dropdownColor: appThemeColor,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                                borderRadius: BorderRadius.circular(10),
-                                items: monthsFilter
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                                value: monthsFilterValue,
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    monthsFilterValue = newValue!;
-                                  });
-                                }),
-                          ),
-                        ),
-                      )
-                    : const SizedBox()
+                Visibility(
+                  visible: _isvisible,
+                  child: dropDownContainer(
+                    context,
+                    child: Center(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                            iconEnabledColor: Colors.white,
+                            menuMaxHeight: 130.0,
+                            dropdownColor: appThemeColor,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 12),
+                            borderRadius: BorderRadius.circular(10),
+                            items: monthsFilter
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            value: monthsFilterValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                monthsFilterValue = newValue!;
+                              });
+                            }),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
           FutureBuilder<List<TransactionModel>>(
-              future: fetch(),
+              future: fetchFromDatabase(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return const Center(child: SizedBox());
